@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth focus:scroll-auto;
+  }
+
+  body {
+    @apply text-primary font-sans bg-background dark:text-foreground;
+  }
+}
+
+@layer components {
+
+  /* Layout */
+  .page-wrapper {
+    @apply px-4 w-full max-w-screen-xl;
+  }
+
+  .page-container {
+    @apply mx-auto grid grid-cols-24 gap-2;
+  }
+
+  .page-sidebar {
+    @apply order-1 col-span-3;
+  }
+
+  .page-main {
+    @apply order-2 col-span-21;
+  }
+
+  .page-content {
+    @apply mt-20 mb-24 page-container;
+  }
+
+  .page-card {
+    @apply p-4 bg-card rounded-lg;
+  }
+
+  .page-block {
+    @apply mb-6 flex-y-4 col-span-24;
+  }
+
+  /* Player */
+  .player-wrapper {
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .player-btn {
+    @apply flex-center size-10 text-primary/60 border-none outline-none;
+
+    >.player-icon-fill {
+      @apply size-6 fill-primary/90 hover:fill-primary hover:stroke-primary;
+    }
+
+    >.player-icon {
+      @apply size-5 text-primary/60 hover:text-primary;
+    }
+  }
+
+
+  /* Navbar */
+  .nav-link {
+    @apply flex-x-2 px-4 py-2 bg-transparent rounded-md text-sm text-primary/50 hover:bg-blue-500/15 hover:text-blue-500;
+
+    &.active {
+      @apply bg-gradient-to-r from-blue-500/80 to-purple-500/80 text-white hover:from-sky-500 hover:to-blue-500;
+    }
+  }
+}
+
+@layer utilities {
+
+  /* Reset */
+  .button-free {
+    @apply w-auto h-auto;
+  }
+  .button-primary {
+    @apply h-9 text-primary/50 [&_svg]:!size-5 [&_svg]:text-primary/40 hover:border-blue-200 hover:text-blue-500 hover:!bg-blue-50 [&_svg]:hover:text-blue-500 dark:hover:!bg-blue-950;
+  }
+
+  /* Transition */
+  .trans-all {
+    @apply transition-all duration-500 ease-in-out;
+  }
+
+  .trans-colors {
+    @apply transition-colors duration-500 ease-in-out;
+  }
+
+  .trans-opacity {
+    @apply transition-opacity duration-500 ease-in-out;
+  }
+
+  .trans-transform {
+    @apply transition-transform duration-500 ease-in-out;
+  }
+
+  .trans-shadow {
+    @apply transition-shadow duration-500 ease-in-out;
+  }
+
+  /* Flex */
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-start {
+    @apply flex items-center;
+  }
+
+  .flex-end {
+    @apply flex justify-end items-center;
+  }
+
+  .flex-x-1 {
+    @apply flex items-center gap-x-1;
+  }
+
+  .flex-x-2 {
+    @apply flex items-center gap-x-2;
+  }
+
+  .flex-x-4 {
+    @apply flex items-center gap-x-4;
+  }
+
+  .flex-x-6 {
+    @apply flex items-center gap-x-6;
+  }
+
+  .flex-y-1 {
+    @apply flex flex-col gap-y-1;
+  }
+
+  .flex-y-2 {
+    @apply flex flex-col gap-y-2;
+  }
+
+  .flex-y-4 {
+    @apply flex flex-col gap-y-4;
+  }
+
+  .flex-y-6 {
+    @apply flex flex-col gap-y-6;
+  }
+}
