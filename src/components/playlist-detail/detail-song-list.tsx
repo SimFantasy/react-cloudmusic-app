@@ -1,6 +1,6 @@
-import { Track } from '@/types/playlist'
 import { DetailSongCard } from '@/components/playlist-detail/detail-song-card'
 import { DetailSongSkeleton } from '@/components/playlist-detail/detail-song-skeleton'
+import { Track } from '@/types/playlist'
 
 type DetailSongListProps = {
 	songs?: Track[]

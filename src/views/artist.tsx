@@ -1,5 +1,5 @@
 const Artist = () => {
-	return <div>Artist</div>
+	return <div className='page-wrapper page-content'>Artist</div>
 }
 
 export default Artist

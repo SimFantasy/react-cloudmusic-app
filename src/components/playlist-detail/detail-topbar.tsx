@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { ListPlus, Play } from 'lucide-react'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
@@ -45,12 +44,9 @@ export const DetailTopbar = ({ detail, loading }: DetailTopbarProps) => {
 					{/* Cover image */}
 					<section className='w-52 h-44'>
 						<AspectRatio ratio={1} className='relative size-44 rounded-lg'>
-							<Image
+							<img
 								src={thumbnail(detail?.coverImgUrl || '', 400)}
 								alt={detail?.name || ''}
-								fill
-								sizes='(min-width: 400px) 400px, 100vw'
-								priority
 								className='size-full object-cover rounded-lg'
 							/>
 						</AspectRatio>
@@ -82,12 +78,12 @@ export const DetailTopbar = ({ detail, loading }: DetailTopbarProps) => {
 						</div>
 
 						<div className='flex-x-4'>
-							<Button className='button-free px-4 py-2 bg-transparent bg-gradient-to-tr from-blue-500/90 to-purple-500/90'>
+							<Button className='button-free px-4 py-2 bg-transparent bg-gradient-to-tr from-sky-500/90 to-blue-500/90'>
 								<Play className='size-5 fill-white stroke-white' />
 								<span>播放全部</span>
 							</Button>
 
-							<Button variant='outline' className='button-free px-4 py-2'>
+							<Button variant='outline' className='button-free px-4 py-2 text-primary/50'>
 								<ListPlus className='size-5' />
 								<span>全部添加到播放列表</span>
 							</Button>

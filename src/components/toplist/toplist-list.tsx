@@ -1,6 +1,7 @@
-import { TopList } from '@/types/toplist'
 import { ToplistCard } from '@/components/toplist/toplist-card'
 import { ToplistSkeleton } from '@/components/toplist/toplist-skeleton'
+
+import { TopList } from '@/types/toplist'
 
 type ToplistListProps = {
 	toplists?: TopList[]

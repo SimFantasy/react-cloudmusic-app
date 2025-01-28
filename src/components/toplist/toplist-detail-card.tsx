@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import { Link } from 'next-view-transitions'
+import { Link } from 'react-router'
 import { Play } from 'lucide-react'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
@@ -14,8 +13,8 @@ type ToplistDetailCardProps = {
 export const ToplistDetailCard = ({ toplist }: ToplistDetailCardProps) => {
 	return (
 		<Link
-			href={`/playlist/${toplist.id}`}
-			className='group flex-y-2 p-4 w-full bg-card rounded-lg trans-all shadow-none hover:shadow-lg hover:shadow-blue-500/20'
+			to={`/playlist/${toplist.id}`}
+			className='group flex-y-2 p-4 w-full bg-card rounded-lg trans-all shadow-none hover:shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-none'
 		>
 			<section className='flex-x-4 justify-between'>
 				<h1 className='text-lg font-semibold text-primary'>{toplist.name}</h1>
@@ -31,12 +30,9 @@ export const ToplistDetailCard = ({ toplist }: ToplistDetailCardProps) => {
 						</div>
 
 						{/* Cover image */}
-						<Image
+						<img
 							src={thumbnail(toplist.coverImgUrl, 200)}
 							alt={toplist.name}
-							fill
-							sizes='(min-width: 768px) 200px, 100px'
-							priority
 							className='size-full object-cover'
 						/>
 					</AspectRatio>

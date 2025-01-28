@@ -18,6 +18,7 @@ export const Searchbar = () => {
 	}, [query])
 
 	const handleSubmit = () => {
+		if (keyword.trim() === '') return
 		if (deferredKeyword) {
 			navigate(`/search?q=${deferredKeyword}`)
 		}
@@ -27,7 +28,10 @@ export const Searchbar = () => {
 			onSubmit={handleSubmit}
 			className='group flex-x-1 w-80 h-9 border border-border bg-blue-500/0 rounded-md trans-colors hover:border-blue-200 hover:bg-blue-500/10'
 		>
-			<button className='flex-center w-7 h-full text-primary/40 group-hover:text-blue-500'>
+			<button
+				type='submit'
+				className='flex-center w-7 h-full text-primary/40 group-hover:text-blue-500'
+			>
 				<Search className='size-4' />
 			</button>
 			<input

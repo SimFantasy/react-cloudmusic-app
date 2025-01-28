@@ -1,8 +1,8 @@
-import Image from 'next/image'
+import { CirclePlay, ListPlus, Play } from 'lucide-react'
+
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { cn, formatDuration, thumbnail } from '@/lib/utils'
 import { Track } from '@/types/playlist'
-import { CirclePlay, ListPlus, Play } from 'lucide-react'
 
 type DetailSongCardProps = {
 	song: Track
@@ -26,12 +26,9 @@ export const DetailSongCard = ({ song, index }: DetailSongCardProps) => {
 					</div>
 
 					{/* Cover image */}
-					<Image
+					<img
 						src={thumbnail(song.al.picUrl || '', 64)}
 						alt={song.name}
-						fill
-						sizes='(min-width: 64px) 64px, 100vw'
-						priority={false}
 						className='size-12 object-cover'
 					/>
 				</AspectRatio>

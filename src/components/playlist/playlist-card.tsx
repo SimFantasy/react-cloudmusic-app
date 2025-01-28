@@ -20,7 +20,7 @@ export const PlaylistCard = ({ playlist }: PlaylistCardProps) => {
 			<AspectRatio ratio={1} className='relative w-full rounded-lg overflow-hidden'>
 				{/* Play button */}
 				<button
-					className='absolute right-4 bottom-4 z-20 flex-center size-10 rounded-full bg-blue-600/80 backdrop-blur-sm trans-all opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'
+					className='absolute right-4 bottom-4 z-20 flex-center size-10 rounded-full bg-sky-500/80 backdrop-blur-sm trans-all opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'
 					title='播放'
 				>
 					<Play className='size-5 fill-white stroke-white' />

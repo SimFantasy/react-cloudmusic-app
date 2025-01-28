@@ -38,7 +38,7 @@ export const fetchePlaylistDetail = ({ id, s }: { id: number; s?: number }) =>
  */
 export const fetchPlaylistSongs = ({
 	id,
-	limit = SITE.PLAYLIST.LIMIT,
+	limit,
 	offset = 0
 }: {
 	id: number

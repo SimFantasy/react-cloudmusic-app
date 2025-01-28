@@ -6,14 +6,14 @@ import { Player } from '@/components/layout/player'
 
 const BaseLayout = () => {
 	return (
-		<div className='page-container gap-0 w-full h-screen bg-gradient-to-bl from-blue-500/10 to-card'>
+		<div className='page-container gap-0 w-full h-screen bg-gradient-to-bl from-blue-500/5 to-sky-300/5'>
 			<Sidebar />
-			<div className='page-main relative w-full h-screen'>
+			<main className='relative page-main grid grid-rows-[auto_1fr] pt-16 w-full h-screen'>
 				<Header />
-				<main className='w-full h-screen overflow-auto'>
+				<div className='w-full h-[calc(100vh-8.5rem)] overflow-auto'>
 					<Outlet />
-				</main>
-			</div>
+				</div>
+			</main>
 			<Player />
 		</div>
 	)
