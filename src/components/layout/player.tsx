@@ -1,11 +1,176 @@
+import { useRef, useEffect } from 'react'
+import Plyr from 'plyr'
+import {
+	Pause,
+	Play,
+	SkipBack,
+	SkipForward,
+	Repeat,
+	Repeat1,
+	Shuffle,
+	VolumeX,
+	Volume2
+} from 'lucide-react'
+
 import { Slider } from '@/components/ui/slider'
 
-export const Player = () => {
-	return (
-		<footer className='fixed z-[1000] right-0 bottom-0 grid grid-rows-[auto,1fr] w-full h-20 bg-card/95 backdrop-blur-sm'>
-			<Slider />
+import { useAudioPlayer } from '@/store/audio-player'
+import { cn, formatTime } from '@/lib/utils'
+import { PlaySequence } from '@/types/audio-player'
 
-			<div className='grid grid-cols-[auto,1fr,auto] gap-4 items-center px-4 h-full'></div>
+export const Player = () => {
+	const audioRef = useRef<HTMLAudioElement | null>(null)
+	const plyrRef = useRef<Plyr | null>(null)
+	const initializedRef = useRef(false)
+
+	const {
+		init,
+		currentTrack,
+		currentTime,
+		duration,
+		volume,
+		setVolume,
+		playSequence,
+		setPlaySequence,
+		toggle,
+		changeTrack,
+		isPlaying,
+		progress,
+		isShowPlayer,
+		setProgress,
+		setCurrentTime,
+		setIsShowPlayer
+	} = useAudioPlayer()
+
+	useEffect(() => {
+		if (audioRef.current && !initializedRef.current) {
+			const plyr = new Plyr('#audio-player', {
+				controls: [],
+				// debug: true,
+				autoplay: false,
+				clickToPlay: false,
+				hideControls: false
+			})
+
+			init(plyr)
+
+			return () => {
+				plyr.destroy()
+				plyrRef.current = null
+				initializedRef.current = false
+			}
+		}
+	}, [init])
+
+	useEffect(() => {
+		if (currentTrack || isShowPlayer) {
+			setIsShowPlayer(true)
+		}
+	}, [currentTrack, setIsShowPlayer, isShowPlayer])
+
+	const sequenceIcon = {
+		[PlaySequence.LIST_LOOP]: <Repeat className='size-4' />,
+		[PlaySequence.SINGLE_LOOP]: <Repeat1 className='size-4' />,
+		[PlaySequence.SHUFFLE]: <Shuffle className='size-4' />
+	}
+
+	const handleToggleMute = () => {
+		setVolume(volume === 0 ? 1 : 0)
+	}
+
+	const handleSeekCommit = (value: number[]) => {
+		const newTime = (value[0] / 100) * duration
+		setProgress(value[0])
+		setCurrentTime(newTime)
+		if (plyrRef.current) {
+			plyrRef.current.currentTime = newTime
+		}
+	}
+
+	const handleSeekChange = (value: number[]) => {
+		const newTime = (value[0] / 100) * duration
+		setProgress(value[0])
+		setCurrentTime(newTime)
+	}
+
+	const handleChangePlaySequence = () => {
+		const newSequence = (playSequence + 1) % 3
+		setPlaySequence(newSequence)
+	}
+	return (
+		<footer
+			className={cn(
+				'fixed right-0 bottom-0 left-0 z-[1000] grid grid-rows-[auto_1fr] w-full h-20 bg-card/90 backdrop-blur-sm trans-all',
+				{
+					'opacity-0 translate-y-20': !isShowPlayer,
+					'opacity-100 translate-y-0': isShowPlayer
+				}
+			)}
+		>
+			<Slider
+				value={[progress]}
+				max={100}
+				step={0.1}
+				onValueChange={handleSeekChange}
+				onValueCommit={handleSeekCommit}
+			/>
+
+			<div className='grid grid-cols-[24rem,1fr,24rem] h-full px-4'>
+				{/* Track info */}
+				<section className='flex-x-4'>
+					<div className='size-12 rounded-md overflow-hidden'>
+						<img src={currentTrack?.al.picUrl} className='size-full object-cover' />
+					</div>
+					<div className='flex-y-1'>
+						<h2 className='flex-x-4 line-clamp-1'>
+							<span className='text-sm text-primary/80'>{currentTrack?.name}</span>
+							<span className='text-xs text-primary/50'>{currentTrack?.al.name}</span>
+						</h2>
+						<div className='flex-x-4 text-xs text-primary/50'>
+							<span className='flex-x-2'>{currentTrack?.ar.map(a => a.name).join(' / ')}</span>
+							<span>
+								{formatTime(currentTime)} / {formatTime(duration)}
+							</span>
+						</div>
+					</div>
+				</section>
+
+				{/* Control buttons */}
+				<section className='flex-center gap-x-4'>
+					<button className='player-btn' onClick={() => changeTrack('previous')}>
+						<SkipBack />
+					</button>
+
+					<button className='player-btn' onClick={toggle}>
+						{isPlaying ? <Pause className='size-6' /> : <Play className='size-6' />}
+					</button>
+
+					<button className='player-btn' onClick={() => changeTrack('next')}>
+						<SkipForward />
+					</button>
+				</section>
+
+				{/* Options buttons */}
+				<section className='flex-end gap-x-4'>
+					<button className='player-btn' onClick={handleChangePlaySequence}>
+						{sequenceIcon[playSequence as PlaySequence]}
+					</button>
+
+					{/* 音量 */}
+					<div className='flex-x-2 w-24'>
+						<button className='player-btn' onClick={handleToggleMute}>
+							{volume === 0 ? <VolumeX className='size-5' /> : <Volume2 className='size-5' />}
+						</button>
+						<Slider
+							max={1}
+							step={0.1}
+							value={[volume]}
+							onValueChange={(value: number[]) => setVolume(value[0])}
+						/>
+					</div>
+				</section>
+			</div>
+			<audio ref={audioRef} controls id='audio-player' />
 		</footer>
 	)
 }
