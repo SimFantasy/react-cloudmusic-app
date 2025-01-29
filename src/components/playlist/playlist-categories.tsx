@@ -1,11 +1,8 @@
-'use client'
-
 import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
 import { ChevronDown } from 'lucide-react'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { QueryLink } from '@/components/common/query-link'
+import useUrlState from '@ahooksjs/use-url-state'
 import { Loader } from '@/components/common/loader'
 
 import { usePlaylistCategories } from '@/service/queries/playlist'
@@ -14,14 +11,19 @@ import { cn } from '@/lib/utils'
 export const PlaylistCategories = () => {
 	const [open, setOpen] = useState(false)
 	const [currentTab, setCurrentTab] = useState('0')
-	const searchParams = useSearchParams()
-	const currentCat = searchParams.get('cat') || ''
+
+	const [catState, setCatState] = useUrlState<{ cat?: string }>(undefined)
 
 	const { data, loading, run } = usePlaylistCategories()
 
 	const handleOpenChange = (open: boolean) => {
 		setOpen(open)
 		run()
+	}
+
+	const handleChooseCat = (cat: string) => {
+		setCatState({ cat })
+		setOpen(false)
 	}
 
 	return (
@@ -61,16 +63,15 @@ export const PlaylistCategories = () => {
 							{data?.sub
 								.filter(sub => sub.category === Number(currentTab))
 								.map(sub => (
-									<QueryLink
+									<button
 										key={sub.name}
-										query={{ cat: sub.name }}
 										className={cn('category-link sm', {
-											active: sub.name === currentCat
+											active: sub.name === catState
 										})}
-										onClick={() => setOpen(false)}
+										onClick={() => handleChooseCat(sub.name)}
 									>
 										{sub.name}
-									</QueryLink>
+									</button>
 								))}
 						</section>
 					</div>

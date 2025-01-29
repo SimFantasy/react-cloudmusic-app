@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetcher } from '@/service/fetcher'
-import { http } from '@/service/http'
 
 import type {
 	PlaylistResponse,
@@ -13,7 +12,12 @@ import type {
 	NetizensPlaylists,
 	HighQualityPlaylists,
 	HighQualityTags,
-	Lyric
+	Lyric,
+	Track,
+	PlaylistDetail,
+	Song,
+	HighQualityTag,
+	CategoryTag
 } from '@/types/playlist'
 import { SITE } from '@/config'
 
@@ -22,13 +26,19 @@ import { SITE } from '@/config'
  * @param id : 歌单 id
  * @param s: 歌单最近的 s 个收藏者,默认为 8
  */
-export const fetchePlaylistDetail = ({ id, s }: { id: number; s?: number }) =>
-	http.Get('/playlist/detail', {
-		params: { id, s },
-		transform(data: PlaylistResponse) {
-			return data.playlist
-		}
+
+type PlaylistDetailParams = { id: string; s?: number }
+type PlaylistDetailType = (params: PlaylistDetailParams) => Promise<PlaylistDetail>
+
+export const fetchPlaylistDetail: PlaylistDetailType = async ({ id, s }) => {
+	const response = await fetcher<any, PlaylistResponse>({
+		method: 'GET',
+		url: '/playlist/detail',
+		params: { id, s }
 	})
+
+	return response.playlist || {}
+}
 
 /**
  * 歌单所有曲目
@@ -36,37 +46,48 @@ export const fetchePlaylistDetail = ({ id, s }: { id: number; s?: number }) =>
  * @param limit : 限制获取歌曲的数量，默认值为当前歌单的歌曲数量
  * @param offset : 默认值为0
  */
-export const fetchPlaylistSongs = ({
-	id,
-	limit,
-	offset = 0
-}: {
-	id: number
-	limit?: number
-	offset?: number
-}) =>
-	http.Get('/playlist/track/all', {
-		params: { id, limit, offset },
-		transform(data: PlaylistSongs) {
-			return data.songs
-		}
+
+type PlaylistSongsParams = { id: string; limit?: number; offset?: number }
+type PlaylistSongsType = (params: PlaylistSongsParams) => Promise<Track[]>
+
+export const fetchPlaylistSongs: PlaylistSongsType = async ({ id, limit = 20, offset = 0 }) => {
+	const response = await fetcher<any, PlaylistSongs>({
+		method: 'GET',
+		url: '/playlist/track/all',
+		params: { id, limit, offset }
 	})
+
+	return response.songs || []
+}
 
 /**
  * 歌单分类
  */
-export const fetchPlaylistCategories = (): Promise<PlaylistCategories> =>
-	http.Get<PlaylistCategories>('/playlist/catlist')
+
+type PlaylistCategoriesType = () => Promise<PlaylistCategories>
+
+export const fetchPlaylistCategories: PlaylistCategoriesType = async () => {
+	const response = await fetcher<any, PlaylistCategories>({
+		method: 'GET',
+		url: '/playlist/catlist'
+	})
+
+	return response || {}
+}
 
 /**
  * 热门歌单分类标签
  */
-export const fetchHotCategories = () =>
-	http.Get('/playlist/hot', {
-		transform(data: HotCategories) {
-			return data.tags
-		}
+
+type HotCategoriesType = () => Promise<CategoryTag[]>
+
+export const fetchHotCategories: HotCategoriesType = async () => {
+	const response = await fetcher<any, HotCategories>({
+		method: 'GET',
+		url: '/playlist/hot'
 	})
+	return response.tags || []
+}
 
 /**
  * 歌单 ( 网友精选碟 )
@@ -75,33 +96,43 @@ export const fetchHotCategories = () =>
  * @param limit: 取出歌单数量 , 默认为 50
  * @param offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*50, 其中 50 为 limit 的值
  */
-export const fetchNetizensPlaylists = ({
-	order,
-	cat,
-	limit,
-	offset
-}: {
+
+export type NetizensPlaylistsParams = {
 	order?: 'new' | 'hot'
 	cat?: string
 	limit?: number
 	offset?: number
-} = {}) =>
-	http.Get('/top/playlist', {
-		params: { order, cat, limit, offset },
-		transform(data: NetizensPlaylists) {
-			return data.playlists
-		}
+}
+type NetizensPlaylistsType = (params?: NetizensPlaylistsParams) => Promise<NetizensPlaylists>
+
+export const fetchNetizensPlaylists: NetizensPlaylistsType = async ({
+	order,
+	cat,
+	limit,
+	offset
+} = {}) => {
+	const response = await fetcher<any, NetizensPlaylists>({
+		method: 'GET',
+		url: '/top/playlist',
+		params: { order, cat, limit, offset }
 	})
+
+	return response
+}
 
 /**
  * 精品歌单标签列表
  */
-export const fetchHighQualityTags = () =>
-	http.Get('/playlist/highquality/tags', {
-		transform(data: HighQualityTags) {
-			return data.tags
-		}
+
+type HighQualityTagsType = () => Promise<HighQualityTag[]>
+
+export const fetchHighQualityTags: HighQualityTagsType = async () => {
+	const response = await fetcher<any, HighQualityTags>({
+		method: 'GET',
+		url: '/playlist/highquality/tags'
 	})
+	return response.tags || []
+}
 
 /**
  * 获取精品歌单
@@ -109,29 +140,42 @@ export const fetchHighQualityTags = () =>
  * @param limit: 取出歌单数量 , 默认为 50
  * @param before: 分页参数,取上一页最后一个歌单的 updateTime 获取下一页数据
  */
-export const fetchHighQualityPlaylists = ({
-	cat,
+
+type HighQualityPlaylistsParams = { cat?: string; limit?: number; before?: number }
+type HighQualityPlaylistsType = (params: HighQualityPlaylistsParams) => Promise<PlaylistDetail[]>
+
+export const fetchHighQualityPlaylists: HighQualityPlaylistsType = async ({
+	cat = '全部',
 	limit = SITE.PLAYLIST.LIMIT,
 	before
-}: { cat?: string; limit?: number; before?: number } = {}) =>
-	http.Get('/top/playlist/highquality', {
-		params: { cat, limit, before },
-		transform(data: HighQualityPlaylists) {
-			return data.playlists
-		}
+}) => {
+	const response = await fetcher<any, HighQualityPlaylists>({
+		method: 'GET',
+		url: '/top/playlist/highquality',
+		params: { cat, limit, before }
 	})
+	return response.playlists || []
+}
 
 /**
  * 获取歌曲详情
  * @param ids: 音乐 id, 如 ids=347230。 传入音乐 id(支持多个 id, 用 , 隔开),
  */
-export const fetchSongDetail = ({ ids }: { ids: string }) =>
-	http.Get('/song/detail', {
-		params: { ids },
-		transform(data: PlaylistSongs) {
-			return data.songs
-		}
+
+type SongDetailParams = { ids: string }
+type SongDetailType = (params: SongDetailParams) => Promise<Song[]>
+
+export const fetchSongDetail: SongDetailType = async ({ ids }) => {
+	const response = await fetcher<any, PlaylistSongs>({
+		method: 'GET',
+		url: '/song/detail',
+		params: { ids }
 	})
+
+	return response.songs || []
+}
+
+// =================================
 
 /**
  * 获取歌曲 url

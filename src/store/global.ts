@@ -3,25 +3,31 @@ import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { SITE } from '@/config'
 
+export enum ThemeState {
+	DARK = 'dark',
+	LIGHT = 'light',
+	SYSTEM = 'system'
+}
+
 export interface GlobalState {
 	isScrolled: boolean
 	scroll: number
-	themeState: 'dark' | 'light' | 'system'
+	themeState: ThemeState
 	setScroll: (scroll: number) => void
 	setScrolled: (isScrolled: boolean) => void
-	setThemeState: (themeState: 'dark' | 'light' | 'system') => void
+	setThemeState: (themeState: ThemeState) => void
 }
 
 export const useGlobalStore = create<GlobalState>()(
 	immer(
 		persist(
 			set => ({
-				isScrolled: false,
+				isScrolled: false as boolean,
 				scroll: 0,
-				themeState: 'light',
+				themeState: ThemeState.LIGHT as ThemeState,
 				setScroll: (scroll: number) => set({ scroll }),
 				setScrolled: (isScrolled: boolean) => set({ isScrolled }),
-				setThemeState: (themeState: 'dark' | 'light' | 'system') => set({ themeState })
+				setThemeState: (themeState: ThemeState) => set({ themeState })
 			}),
 			{
 				name: SITE.STORE.GLOBAL

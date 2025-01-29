@@ -1,6 +1,11 @@
-import { http } from '@/service/http'
-
-import type { PersonalizedPlaylist, PersonalizedNewSong } from '@/types/discover'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { fetcher } from '@/service/fetcher'
+import type {
+	PersonalizedPlaylist,
+	PlaylistResult,
+	PersonalizedNewSong,
+	NewSongResult
+} from '@/types/discover'
 import { SITE } from '@/config'
 
 /**
@@ -8,22 +13,33 @@ import { SITE } from '@/config'
  * @param limit: 取出数量 , 默认为 30 (不支持 offset)
  */
 
-export const fetchDiscoverPlaylist = () =>
-	http.Get('/personalized', {
-		params: { limit: SITE.DISCOVER.PLAYLIST_LIMIT },
-		transform(data: PersonalizedPlaylist) {
-			return data.result
-		}
+type FetchPlaylistLimitParams = { limit?: number }
+type FetchDiscoverPlaylistType = (params?: FetchPlaylistLimitParams) => Promise<PlaylistResult[]>
+export const fetchDiscoverPlaylist: FetchDiscoverPlaylistType = async ({
+	limit = SITE.DISCOVER.PLAYLIST_LIMIT
+} = {}) => {
+	const response = await fetcher<any, PersonalizedPlaylist>({
+		method: 'GET',
+		url: '/personalized',
+		params: { limit }
 	})
+	return response.result || []
+}
 
 /**
  * 获取最新歌曲
  * @param limit: 取出数量 , 默认为 10 (不支持 offset)
  */
-export const fetchDiscoverNewSong = () =>
-	http.Get('/personalized/newsong', {
-		params: { limit: SITE.DISCOVER.NEWSONG_LIMIT },
-		transform(data: PersonalizedNewSong) {
-			return data.result
-		}
+type FetchSonglistLimitParams = { limit?: number }
+type FetchDiscoverNewSongType = (params?: FetchSonglistLimitParams) => Promise<NewSongResult[]>
+
+export const fetchDiscoverNewSong: FetchDiscoverNewSongType = async ({
+	limit = SITE.DISCOVER.NEWSONG_LIMIT
+} = {}) => {
+	const response = await fetcher<any, PersonalizedNewSong>({
+		method: 'GET',
+		url: '/personalized/newsong',
+		params: { limit }
 	})
+	return response.result || []
+}
