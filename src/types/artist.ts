@@ -44,3 +44,6 @@ export interface ArtistSongs {
 	total: number
 	code: number
 }
+
+// 歌手分类类型
+export type ArtistCategory = { area?: string; type?: string; initial?: string }

@@ -102,3 +102,27 @@ export function filterToplist(toplist: TopList[], filterToplistIds: number[]): T
 export function filterOtherToplist(toplist: TopList[], filterToplistIds: number[]): TopList[] {
 	return toplist?.filter(item => !filterToplistIds.includes(item.id))
 }
+
+// 去除数组中的负数和0后，返回排序后的正整数数组
+export function sortNumberArray(arr: number[]): number[] {
+	// 过滤掉负数和0
+	const positiveNumbers = arr.filter(num => num > 0)
+
+	// 对正整数进行排序
+	positiveNumbers.sort((a, b) => a - b)
+
+	return positiveNumbers
+}
+
+// 去除数组中的负数和0后，返回排序后的字母数组
+export function sortLettersArray(arr: string[]): string[] {
+	// 过滤掉负整数和0
+	const letters = arr.filter(
+		item => !['0', '-0', '00', '-00'].includes(item) && /^[a-zA-Z]+$/.test(item)
+	)
+
+	// 对字母进行排序
+	letters.sort((a, b) => a.localeCompare(b))
+
+	return letters
+}

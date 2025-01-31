@@ -38,9 +38,9 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 				currentTrackIndex: -1,
 				currentLyric: null as ParseLyric[] | null,
 				currentLyricIndex: -1,
-				playlist: [],
+				playlist: [] as Track[],
 
-				isLoading: false,
+				isLoading: false as boolean,
 				isPlaying: false,
 				isShowPlayer: true,
 
@@ -218,8 +218,13 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 					}
 				},
 
-				// 设置播放列表
-				setPlaylist: async (playlist: Track[]) => {
+				/**
+				 * 设置播放列表
+				 * 1.检查播放列表是否有该歌曲，有则根据索引播放
+				 * 2.没有则添加到列表末尾
+				 * 3.根据播放模式切换歌曲
+				 */
+				setPlaylist: async (tracks: Track[]) => {
 					const { _plyr } = get()
 
 					if (_plyr) {
@@ -233,7 +238,7 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 
 					// 设置新播放列表
 					set({
-						playlist,
+						playlist: tracks,
 						currentTrack: null,
 						currentTrackIndex: -1,
 						currentLyric: null,
@@ -241,11 +246,32 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 					})
 
 					// 如果新播放列表不为空，开始播放第一首
-					if (playlist.length > 0) {
+					if (tracks.length > 0) {
 						// 等待100ms确保状态更新完成
 						await new Promise(resolve => setTimeout(resolve, 100))
 						await get().playTrack(0)
 					}
+				},
+
+				/**
+				 * 添加到播放列表
+				 * 1. 如果播放列表为空，则直接插入播放列表
+				 * 2. 根据当前播放歌曲索引，插入到当前索引之后
+				 */
+				addPlaylist: (tracks: Track[]) => {
+					const { currentTrackIndex, playlist } = get()
+
+					if (playlist.length === 0) {
+						set({ playlist })
+						return
+					}
+
+					const newPlaylist = [...playlist]
+					newPlaylist
+						.splice(0, currentTrackIndex)
+						.concat(tracks, newPlaylist.slice(currentTrackIndex))
+
+					set({ playlist: newPlaylist })
 				},
 
 				// 设置音量

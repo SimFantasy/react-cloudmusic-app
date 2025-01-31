@@ -81,7 +81,8 @@ export interface AudioPlayerState {
 	addTrack: (track: Track) => void // 添加新曲目
 	playTrack: (index: number) => Promise<void> // 播放指定曲目
 	removeTrack: (trackId: string) => void // 移除曲目
-	setPlaylist: (playlist: Track[]) => Promise<void> // 设置播放列表
+	setPlaylist: (tracks: Track[]) => Promise<void> // 设置播放列表
+	addPlaylist: (tracks: Track[]) => void // 添加播放列表
 
 	setVolume: (value: number) => void // 设置音量
 	setPlaySequence: (value: PlaySequence) => void // 设置播放模式

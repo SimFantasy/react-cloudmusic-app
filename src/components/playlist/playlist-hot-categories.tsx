@@ -1,9 +1,9 @@
-import { Loader } from '@/components/common/loader'
+import useUrlState from '@ahooksjs/use-url-state'
 
+import { Loader } from '@/components/common/loader'
 import { PlaylistCategories } from '@/components/playlist/playlist-categories'
 
 import { useHotCategories } from '@/service/queries/playlist'
-import useUrlState from '@ahooksjs/use-url-state'
 import { useMainScrolled } from '@/hooks/use-main-scrolled'
 import { cn } from '@/lib/utils'
 

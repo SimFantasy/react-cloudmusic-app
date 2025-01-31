@@ -50,7 +50,7 @@ export const fetchPlaylistDetail: PlaylistDetailType = async ({ id, s }) => {
 type PlaylistSongsParams = { id: string; limit?: number; offset?: number }
 type PlaylistSongsType = (params: PlaylistSongsParams) => Promise<Track[]>
 
-export const fetchPlaylistSongs: PlaylistSongsType = async ({ id, limit = 20, offset = 0 }) => {
+export const fetchPlaylistSongs: PlaylistSongsType = async ({ id, limit, offset }) => {
 	const response = await fetcher<any, PlaylistSongs>({
 		method: 'GET',
 		url: '/playlist/track/all',
