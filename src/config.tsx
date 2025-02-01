@@ -22,6 +22,9 @@ export const SITE = {
 	},
 	PLAYLIST: {
 		LIMIT: 24
+	},
+	ARTIST: {
+		LIMIT: 24
 	}
 }
 

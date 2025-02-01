@@ -52,7 +52,7 @@ export interface Track {
 	ar: Artist[]
 	mv: number
 	cp: number
-	publishTime: number
+	publishTime?: number
 }
 
 // 专辑
