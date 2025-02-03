@@ -24,7 +24,10 @@ export const SITE = {
 		LIMIT: 24
 	},
 	ARTIST: {
-		LIMIT: 24
+		ARTIST_LIMIT: 24,
+		SONG_LIMIT: 24,
+		ALBUM_LIMIT: 24,
+		MV_LIMIT: 24
 	}
 }
 

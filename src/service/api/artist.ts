@@ -7,9 +7,7 @@ import type {
 	ArtistInfo,
 	ArtistDescription,
 	ArtistAlbums,
-	Album,
 	ArtistMvs,
-	Mv,
 	ArtistDetail,
 	ArtistDetailData,
 	HotArtists,
@@ -108,7 +106,7 @@ type ArtistSongsType = ({
 	order?: 'hot' | 'time'
 	limit?: number
 	offset?: number
-}) => Promise<Song[]>
+}) => Promise<ArtistSongs>
 export const fetchArtistSongs: ArtistSongsType = async ({ id, order, limit, offset }) => {
 	const response = await fetcher<any, ArtistSongs>({
 		method: 'GET',
@@ -121,7 +119,7 @@ export const fetchArtistSongs: ArtistSongsType = async ({ id, order, limit, offs
 		}
 	})
 
-	return response.songs || []
+	return response || {}
 }
 
 /**
@@ -184,12 +182,12 @@ type ArtistAlbumsType = ({
 	id: number
 	limit?: number
 	offset?: number
-}) => Promise<Album[]>
+}) => Promise<ArtistAlbums>
 
 export const fetchArtistAlbums: ArtistAlbumsType = async ({ id, limit, offset }) => {
 	const response = await fetcher<any, ArtistAlbums>({
 		method: 'GET',
-		url: '/artist/albums',
+		url: '/artist/album',
 		params: {
 			id,
 			limit,
@@ -197,23 +195,32 @@ export const fetchArtistAlbums: ArtistAlbumsType = async ({ id, limit, offset })
 		}
 	})
 
-	return response.hotAlbums || []
+	return response || {}
 }
 
 /**
  * 获取歌手 mv
  * @param id: 歌手 id
  * @param option limit: 取出数量 , 默认为 30
+ * @param option offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认 为 0
  */
 
-type ArtistMvType = ({ id }: { id: number }) => Promise<Mv[]>
+type ArtistMvType = ({
+	id,
+	limit,
+	offset
+}: {
+	id: number
+	limit?: number
+	offset?: number
+}) => Promise<ArtistMvs>
 
-export const fetchArtistMvs: ArtistMvType = async ({ id }) => {
+export const fetchArtistMvs: ArtistMvType = async ({ id, limit, offset }) => {
 	const response = await fetcher<any, ArtistMvs>({
 		method: 'GET',
 		url: '/artist/mv',
-		params: { id }
+		params: { id, limit, offset }
 	})
 
-	return response.mvs || []
+	return response || {}
 }

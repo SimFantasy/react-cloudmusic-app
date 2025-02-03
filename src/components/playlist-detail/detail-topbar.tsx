@@ -19,7 +19,7 @@ export const DetailTopbar = ({ detail, loading }: DetailTopbarProps) => {
 			{loading ? (
 				// Loading skeleton
 				<div className='grid grid-cols-[auto,1fr] gap-4'>
-					<section className='w-50 h-44'>
+					<section className='w-52 h-44'>
 						<Skeleton className='size-44 rounded-lg' />
 					</section>
 
@@ -78,7 +78,7 @@ export const DetailTopbar = ({ detail, loading }: DetailTopbarProps) => {
 						</div>
 
 						<div className='flex-x-4'>
-							<Button className='button-free px-4 py-2 bg-transparent bg-gradient-to-tr from-sky-500/90 to-blue-500/90'>
+							<Button className='play-all-button'>
 								<Play className='size-5 fill-white stroke-white' />
 								<span>播放全部</span>
 							</Button>

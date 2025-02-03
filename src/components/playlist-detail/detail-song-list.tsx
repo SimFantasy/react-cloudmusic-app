@@ -12,7 +12,9 @@ export const DetailSongList = ({ songs, loading }: DetailSongListProps) => {
 		<div className='flex-y-1'>
 			{loading
 				? Array.from({ length: 10 }).map((_, index) => <DetailSongSkeleton key={index} />)
-				: songs?.map((song, index) => <DetailSongCard key={song.id} song={song} index={index} />)}
+				: songs?.map((song, index) => (
+						<DetailSongCard key={song.id + song.dt + index} song={song} index={index} />
+				  ))}
 		</div>
 	)
 }

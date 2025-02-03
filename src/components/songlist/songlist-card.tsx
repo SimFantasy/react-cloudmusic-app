@@ -29,7 +29,7 @@ export const SonglistCard = ({ song }: SonglistCardProps) => {
 					{song.name}
 				</h3>
 				<span className='text-xs text-primary/40 trans-colors group-hover:text-blue-500/60'>
-					{song.song.artists.map(artist => artist.name).join(' / ')}
+					{(song as NewSongResult)?.song?.artists.map(artist => artist.name).join(' / ')}
 				</span>
 			</div>
 

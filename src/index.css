@@ -132,6 +132,11 @@
     }
   }
 
+  /* Detail */
+  .play-all-button {
+    @apply button-free px-4 py-2 bg-transparent bg-gradient-to-r from-sky-500/90 to-blue-500/90;
+  }
+
 
   /* Navbar */
   .nav-link {
@@ -162,6 +167,8 @@
       @apply text-blue-500;
     }
   }
+
+
 
 }
 

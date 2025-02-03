@@ -18,8 +18,8 @@ export interface Artist {
 	followed: boolean
 	id: number
 	img1v1Url: string
-	name: string
 	picUrl: string
+	name: string
 	topicPerson: number
 	trans: string
 	accountId?: number
@@ -27,6 +27,8 @@ export interface Artist {
 
 	publishTime?: number
 	mvSize?: number
+	avatar?: string
+	cover?: string
 }
 
 /**

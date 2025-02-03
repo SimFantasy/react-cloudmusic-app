@@ -126,3 +126,16 @@ export function sortLettersArray(arr: string[]): string[] {
 
 	return letters
 }
+
+// 转译文本为 HTML文本
+export function convertTextToHtml(text: string): string {
+	if (!text) return text
+
+	// 将制表符 \t 替换为 HTML 的 &emsp;
+	let htmlText = text.replace(/\t/g, '&emsp;')
+
+	// 将换行符 \n 替换为 HTML 的 <br>
+	htmlText = htmlText.replace(/\n/g, '<br>')
+
+	return htmlText
+}
