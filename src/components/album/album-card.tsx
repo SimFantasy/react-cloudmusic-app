@@ -1,8 +1,10 @@
-import { Album } from '@/types/artist'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { formatDate, thumbnail } from '@/lib/utils'
-import { Play } from 'lucide-react'
 import { Link } from 'react-router'
+import { Play } from 'lucide-react'
+
+import { AspectRatio } from '@/components/ui/aspect-ratio'
+
+import { formatDate, thumbnail } from '@/lib/utils'
+import { Album } from '@/types/album'
 
 type AlbumCardProps = {
 	album: Album
@@ -11,7 +13,7 @@ type AlbumCardProps = {
 export const AlbumCard = ({ album }: AlbumCardProps) => {
 	if (!album) return null
 	return (
-		<Link to={`/playlist/${album.id}`} className='group flex-y-2 w-full'>
+		<Link to={`/album/${album.id}`} className='group flex-y-2 w-full'>
 			<AspectRatio ratio={1} className='relative w-full rounded-lg overflow-hidden'>
 				{/* Overlay */}
 				<div className='absolute z-10 inset-0 size-full bg-blue-950/0 trans-all group-hover:bg-blue-950/60'>
@@ -23,7 +25,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
 
 				{/* Cover */}
 				<img
-					src={thumbnail(album.picUrl, 320)}
+					src={thumbnail(album.picUrl || '', 320)}
 					alt={album.name}
 					className='size-full object-cover'
 				/>
@@ -33,7 +35,7 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
 					{album.name}
 				</h1>
 				<div className='flex-x-4 text-xs text-primary/50 group-hover:text-blue-400'>
-					<span>{album.size}首</span>
+					{(album as Album).size && <span>{(album as Album).size}首</span>}
 					<span>{formatDate(album.publishTime, 'YYYY-MM-DD')}</span>
 				</div>
 			</div>

@@ -2,7 +2,7 @@ import { DetailSongList } from '@/components/playlist-detail/detail-song-list'
 import { useArtistTopSongs } from '@/service/queries/artist'
 
 type ArtistDetailSongListProps = {
-	artistId: string
+	artistId?: string
 }
 
 export const ArtistDetailSongList = ({ artistId }: ArtistDetailSongListProps) => {

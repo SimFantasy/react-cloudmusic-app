@@ -28,6 +28,12 @@ export const SITE = {
 		SONG_LIMIT: 24,
 		ALBUM_LIMIT: 24,
 		MV_LIMIT: 24
+	},
+	ALBUM: {
+		ALBUM_LIMIT: 24,
+		NEWSONG_LIMIT: 50,
+		SONG_LIMIT: 24,
+		COMMENT_LIMIT: 20
 	}
 }
 
@@ -41,7 +47,9 @@ export const ROUTES = {
 	ARTIST: '/artist',
 	ARTIST_DETAIL: '/artist/:artistId',
 	ALBUM: '/album',
-	SEARCH: '/search'
+	NEWSONG: '/newsong',
+	SEARCH: '/search',
+	NOTFOUND: '/notfound'
 }
 
 // 侧栏导航
@@ -99,6 +107,24 @@ export const ARTIST_CATEGORY = {
 		y: 'Y',
 		z: 'Z'
 	}
+}
+
+// 新歌速度分类
+export const NEWSONG_TYPE = {
+	'0': '全部',
+	'7': '华语',
+	'8': '日本',
+	'16': '韩国',
+	'96': '欧美'
+}
+
+// 新碟地区分类
+export const NEWALBUM_AREA = {
+	// ALL: '全部',
+	ZH: '华语',
+	EA: '欧美',
+	KR: '韩国',
+	JP: '日本'
 }
 
 // 榜单

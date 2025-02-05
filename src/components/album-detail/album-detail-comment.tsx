@@ -1,22 +1,23 @@
 import { useRef, useEffect } from 'react'
-import useUrlState from '@ahooksjs/use-url-state'
 import { useRafState, useInViewport, useDebounceFn } from 'ahooks'
 
 import { Button } from '@/components/ui/button'
+import { CommentList } from '@/components/comment/comment-list'
 
-import { AlbumList } from '@/components/album/album-list'
-import { useAllNewAlbumsInfinite } from '@/service/queries/album'
-import { AlbumCategories } from '@/components/album/album-categories'
+import { useAlbumCommentsInfinite } from '@/service/queries/album'
 
-const Album = () => {
+type AlbumDetailCommentProps = {
+	albumId?: number
+}
+
+export const AlbumDetailComment = ({ albumId }: AlbumDetailCommentProps) => {
 	const [page, setPage] = useRafState(1)
-	const [urlState, setUrlState] = useUrlState<{ area?: string }>(undefined)
 	const ref = useRef<HTMLDivElement>(null)
 	const [inViewport] = useInViewport(ref)
 
-	const { data, loading, loadMore, loadingMore, noMore } = useAllNewAlbumsInfinite({
-		page,
-		area: urlState?.area
+	const { data, loading, loadMore, loadingMore, noMore } = useAlbumCommentsInfinite({
+		id: albumId as number,
+		page
 	})
 
 	const { run } = useDebounceFn(
@@ -34,11 +35,17 @@ const Album = () => {
 	}, [inViewport, run])
 
 	return (
-		<div className='page-wrapper page-content'>
-			<div className='page-block'>
-				<AlbumCategories urlState={urlState} setUrlState={setUrlState} />
-				<AlbumList albums={data?.list} loading={loading} />
+		<div className='flex-y-6'>
+			{data?.hotComments && data?.hotComments.length > 0 && (
+				<div className='flex-y-4'>
+					<h2 className='text-xl font-semibold text-primary/80'>精彩评论</h2>
+					<CommentList comments={data?.hotComments} loading={loading} />
+				</div>
+			)}
 
+			<div className='flex-y-4'>
+				<h2 className='text-xl font-semibold text-primary/80'>最新评论</h2>
+				<CommentList comments={data?.list} loading={loading} />
 				<div ref={ref} className='flex-center mt-4'>
 					{!noMore && (
 						<Button variant='outline' size='sm' onClick={run} disabled={loadingMore}>
@@ -51,5 +58,3 @@ const Album = () => {
 		</div>
 	)
 }
-
-export default Album

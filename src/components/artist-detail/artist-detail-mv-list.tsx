@@ -7,7 +7,7 @@ import { MvList } from '@/components/mv/mv-list'
 import { useArtistMvsInfinite } from '@/service/queries/artist'
 
 type ArtistDetailMvListProps = {
-	artistId: string
+	artistId?: string
 }
 
 export const ArtistDetailMvList = ({ artistId }: ArtistDetailMvListProps) => {

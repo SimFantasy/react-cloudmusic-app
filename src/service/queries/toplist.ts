@@ -1,4 +1,4 @@
-import { useRequest } from 'alova/client'
+import { useRequest } from 'ahooks'
 import { fetchTopLists, fetchTopListsDetail } from '@/service/api/toplist'
 
 // 所有榜单

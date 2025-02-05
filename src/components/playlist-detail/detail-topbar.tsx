@@ -69,7 +69,9 @@ export const DetailTopbar = ({ detail, loading }: DetailTopbarProps) => {
 									<span>{detail?.creator.nickname}</span>
 								</div>
 
-								<div>标签：{detail?.tags.join(' / ')}</div>
+								{detail?.tags && detail?.tags.length > 0 && (
+									<div>标签：{detail?.tags.join(' / ')}</div>
+								)}
 
 								<div className='text-primary/40'>
 									{formatDate(detail?.createTime || '', 'YYYY-MM-DD')} 创建

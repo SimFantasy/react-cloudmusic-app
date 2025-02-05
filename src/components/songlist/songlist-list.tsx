@@ -4,6 +4,7 @@ import { SongListSkeleton } from '@/components/songlist/songlist-skeleton'
 import { SITE } from '@/config'
 
 import { NewSongResult } from '@/types/discover'
+import { Daum } from '@/types/newsong'
 
 type SonglistListProps = {
 	songs?: NewSongResult[]

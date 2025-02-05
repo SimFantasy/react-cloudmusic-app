@@ -34,8 +34,9 @@ export const PlaylistHotCategories = () => {
 				{loading ? (
 					<Loader />
 				) : (
-					data?.map(category => (
+					data?.map((category, index) => (
 						<button
+							key={category.id + index}
 							onClick={() => setCatState({ cat: category.name })}
 							className={cn('category-link', {
 								active: catState?.cat === category.name

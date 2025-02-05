@@ -1,7 +1,8 @@
 import { AlbumCard } from '@/components/album/album-card'
 import { AlbumSkeleton } from '@/components/album/album-skeleton'
 import { SITE } from '@/config'
-import { Album } from '@/types/artist'
+
+import { Album } from '@/types/album'
 
 type AlbumListProps = {
 	albums?: Album[]
@@ -15,7 +16,7 @@ export const AlbumList = ({ albums, loading }: AlbumListProps) => {
 				? Array.from({ length: SITE.ARTIST.ALBUM_LIMIT }).map((_, index) => (
 						<AlbumSkeleton key={index} />
 				  ))
-				: albums?.map(album => <AlbumCard key={album.id} album={album} />)}
+				: albums?.map((album, index) => <AlbumCard key={album.id! + index} album={album} />)}
 		</div>
 	)
 }

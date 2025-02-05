@@ -7,7 +7,7 @@ import { AlbumList } from '@/components/album/album-list'
 import { useArtistAlbumsInfinite } from '@/service/queries/artist'
 
 type ArtistDetailAlbumListProps = {
-	artistId: string
+	artistId?: string
 }
 
 export const ArtistDetailAlbumList = ({ artistId }: ArtistDetailAlbumListProps) => {

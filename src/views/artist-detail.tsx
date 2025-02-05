@@ -13,7 +13,7 @@ const ArtistDetail = () => {
 	const { artistId } = useParams<{ artistId: string }>()
 	const [currentTab, setCurrentTab] = useState('歌曲')
 	const { data, loading } = useArtistDetail({ id: Number(artistId) })
-	if (!artistId) return null
+
 	return (
 		<div className='page-wrapper page-content'>
 			<div className='page-block'>

@@ -16,7 +16,7 @@ const Discover = () => {
 			</div>
 
 			<div className='page-block'>
-				<Titlebar title='新歌速递' link={ROUTES.ALBUM} />
+				<Titlebar title='新歌速递' link={ROUTES.NEWSONG} />
 				<SonglistList songs={newSongs} loading={newSongsLoading} />
 			</div>
 		</div>

@@ -66,6 +66,23 @@ export const routes: RouteObject[] = [
 				loader: protectedLoader
 			},
 			{
+				path: 'album/:albumId',
+				element: (
+					<LazyComponent
+						lazyElement={lazy(() => import('@/views/album-detail'))}
+						title='专辑详情'
+					/>
+				),
+				loader: protectedLoader
+			},
+			{
+				path: 'newsong',
+				element: (
+					<LazyComponent lazyElement={lazy(() => import('@/views/newsong'))} title='新歌速递' />
+				),
+				loader: protectedLoader
+			},
+			{
 				path: 'search',
 				element: <LazyComponent lazyElement={lazy(() => import('@/views/search'))} title='搜索' />,
 				loader: protectedLoader

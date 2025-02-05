@@ -2,7 +2,7 @@ import { useArtistDesc } from '@/service/queries/artist'
 import { TextContent } from '@/components/common/text-content'
 
 type ArtistDetailDescriptionProps = {
-	artistId: string
+	artistId?: string
 	artistName?: string
 }
 

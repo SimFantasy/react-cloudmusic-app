@@ -3,13 +3,17 @@ import { CirclePlay, ListPlus, Play } from 'lucide-react'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { cn, formatDuration, thumbnail } from '@/lib/utils'
 import { Track } from '@/types/playlist'
+import { Daum } from '@/types/newsong'
 
 type DetailSongCardProps = {
-	song: Track
+	song: Track | Daum
 	index: number
 }
 
 export const DetailSongCard = ({ song, index }: DetailSongCardProps) => {
+	const songPic = (song as Track)?.al?.picUrl || (song as Daum)?.album?.picUrl
+	const songName = (song as Track)?.name || (song as Daum)?.name
+	const trackName = (song as Track)?.al?.name || (song as Daum)?.album?.name
 	return (
 		<section
 			className={cn(
@@ -26,21 +30,17 @@ export const DetailSongCard = ({ song, index }: DetailSongCardProps) => {
 					</div>
 
 					{/* Cover image */}
-					<img
-						src={thumbnail(song.al.picUrl || '', 64)}
-						alt={song.name}
-						className='size-12 object-cover'
-					/>
+					<img src={thumbnail(songPic || '', 64)} alt={songName} className='size-12 object-cover' />
 				</AspectRatio>
 			</div>
 			<div className='flex-y-1 px-2'>
-				<h1 className='text-sm text-primary/80 group-hover:text-blue-500'>{song.name}</h1>
+				<h1 className='text-sm text-primary/80 group-hover:text-blue-500'>{songName}</h1>
 				<div className='text-xs text-primary/40'>
-					{song.ar.map(artist => artist.name).join(' / ')}
+					{((song as Track).ar || (song as Daum).artists)?.map(artist => artist.name).join(' / ')}
 				</div>
 			</div>
-			<div className='text-primary/60 truncate line-clamp-1'>{song.al.name}</div>
-			<div>{formatDuration(song.dt)}</div>
+			<div className='text-primary/60 truncate line-clamp-1'>{trackName}</div>
+			<div>{formatDuration((song as Track).dt || (song as Daum).duration)}</div>
 			<div className='flex-end gap-x-2'>
 				<button className='p-2 text-primary/50 hover:text-blue-500 trans-all opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0'>
 					<ListPlus className='size-5' />
