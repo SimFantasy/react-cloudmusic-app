@@ -4,6 +4,8 @@ import { useParams } from 'react-router'
 import { DetailTopbar } from '@/components/playlist-detail/detail-topbar'
 import { DetailSongList } from '@/components/playlist-detail/detail-song-list'
 import { DetailTabs } from '@/components/playlist-detail/detail-tabs'
+import { DetailComment } from '@/components/playlist-detail/detail-comment'
+import { DetailSubscribe } from '@/components/playlist-detail/detail-subscribe'
 
 import { usePlaylistDetail, usePlaylistSongs } from '@/service/queries/playlist'
 
@@ -32,7 +34,10 @@ const PlaylistDetail = () => {
 			<div className='page-block'>
 				<DetailTopbar detail={playlistDetail} loading={loadingDetail} />
 				<DetailTabs currentTab={currentTab} setCurrentTab={setCurrentTab} counts={counts} />
-				<DetailSongList songs={playlistSongs} loading={loadingSongs} />
+
+				{currentTab === '歌曲' && <DetailSongList songs={playlistSongs} loading={loadingSongs} />}
+				{currentTab === '评论' && <DetailComment playlistId={Number(playlistId)} />}
+				{currentTab === '收藏' && <DetailSubscribe playlistId={Number(playlistId)} />}
 			</div>
 		</div>
 	)

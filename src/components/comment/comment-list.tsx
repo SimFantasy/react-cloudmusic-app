@@ -1,4 +1,4 @@
-import { Comment } from '@/types/album'
+import { Comment } from '@/types/comment'
 import { CommentCard } from '@/components/comment/comment-card'
 import { CommentSkeleton } from '@/components/comment/comment-skeleton'
 import { SITE } from '@/config'

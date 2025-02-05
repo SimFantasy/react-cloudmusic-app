@@ -276,3 +276,43 @@ export interface HighQualityTag {
 	category: number
 	hot: boolean
 }
+
+/**
+ * 歌单收藏
+ */
+export interface PlaylistSubscribers {
+	total: number
+	code: number
+	more: boolean
+	subscribers: PlaylistSubscriber[]
+	reason: string
+}
+
+export interface PlaylistSubscriber {
+	defaultAvatar: boolean
+	province: number
+	authStatus: number
+	followed: boolean
+	avatarUrl: string
+	accountStatus: number
+	gender: number
+	city: number
+	birthday: number
+	userId: number
+	userType: number
+	nickname: string
+	signature: string
+	description: string
+	detailDescription: string
+	avatarImgId: number
+	backgroundImgId: number
+	backgroundUrl?: string
+	authority: number
+	mutual: boolean
+	djStatus: number
+	vipType: number
+	subscribeTime: number
+	backgroundImgIdStr: string
+	avatarImgIdStr: string
+	avatarImgId_str?: string
+}

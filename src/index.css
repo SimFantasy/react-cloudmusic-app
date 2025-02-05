@@ -168,6 +168,50 @@
     }
   }
 
+  /* Sheet */
+  .sheet-content {
+    @apply !top-20 !px-0 !py-4 !h-[calc(100vh-11rem)] border border-primary/5 rounded-l-lg !shadow-lg;
+    & > .sheet-close {
+      @apply hidden;
+    }
+  }
+
+  /* Disc */
+   @keyframes disc-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .disc-spin {
+    animation: disc-rotate 8s linear infinite;
+  }
+  .disc-run {
+    animation-play-state: running;
+  }
+  .disc-pause {
+    animation-play-state: paused;
+  }
+
+  /* Lyric */
+  .lyric-wrapper {
+    @apply relative flex-center p-16 w-1/2 h-full;
+  }
+  .lyric-container {
+    @apply flex-y-2 w-[80%] h-full overflow-hidden scroll-smooth trans-all hover:overflow-auto;
+    
+    scrollbar-gutter:stable;
+
+    & > .lyric-item {
+      @apply text-center text-base text-white/50;
+
+      &.active {
+        @apply text-2xl text-white;
+      }
+    }
+  }
 
 
 }

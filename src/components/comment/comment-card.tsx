@@ -1,4 +1,4 @@
-import { Comment } from '@/types/album'
+import { Comment } from '@/types/comment'
 import { UserAvatar } from '@/components/common/user-avatar'
 import { formatDate } from '@/lib/utils'
 import { MessageCircleMore, MessageSquareShare, ThumbsUp } from 'lucide-react'

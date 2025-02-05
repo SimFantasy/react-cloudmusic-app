@@ -41,10 +41,10 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 				playlist: [] as Track[],
 
 				isLoading: false as boolean,
-				isPlaying: false,
-				isShowPlayer: true,
+				isPlaying: false as boolean,
+				isShowPlayer: true as boolean,
 
-				error: null,
+				error: null as PlayerError | null,
 				_plyr: null,
 
 				// 初始化播放器
@@ -258,7 +258,7 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 				 * 1. 如果播放列表为空，则直接插入播放列表
 				 * 2. 根据当前播放歌曲索引，插入到当前索引之后
 				 */
-				addPlaylist: (tracks: Track[]) => {
+				addPlaylist: (tracks: Track[], pos: 'next' | 'end' = 'next') => {
 					const { currentTrackIndex, playlist } = get()
 
 					if (playlist.length === 0) {
@@ -266,12 +266,16 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 						return
 					}
 
-					const newPlaylist = [...playlist]
-					newPlaylist
-						.splice(0, currentTrackIndex)
-						.concat(tracks, newPlaylist.slice(currentTrackIndex))
+					if (pos === 'next') {
+						const newPlaylist = [...playlist]
+						newPlaylist
+							.splice(0, currentTrackIndex)
+							.concat(tracks, newPlaylist.slice(currentTrackIndex))
 
-					set({ playlist: newPlaylist })
+						set({ playlist: newPlaylist })
+					} else {
+						set({ playlist: [...playlist, ...tracks] })
+					}
 				},
 
 				// 设置音量

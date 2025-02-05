@@ -21,7 +21,9 @@ export const SITE = {
 		NEWSONG_LIMIT: 12
 	},
 	PLAYLIST: {
-		LIMIT: 24
+		LIMIT: 24,
+		COMMENT_LIMIT: 24,
+		SUBSCRIBE_LIMIT: 24
 	},
 	ARTIST: {
 		ARTIST_LIMIT: 24,

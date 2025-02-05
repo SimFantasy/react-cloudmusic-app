@@ -7,7 +7,8 @@ import {
 	type AlbumCommentsParams
 } from '@/service/api/album'
 import { SITE } from '@/config'
-import type { Album, Comment } from '@/types/album'
+import type { Album } from '@/types/album'
+import type { Comment } from '@/types/comment'
 
 /**
  * 全部新碟 无限加载

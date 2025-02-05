@@ -13,10 +13,13 @@ import {
 } from 'lucide-react'
 
 import { Slider } from '@/components/ui/slider'
+import { PlaylistButton } from '@/components/player/playlist-button'
 
 import { useAudioPlayer } from '@/store/audio-player'
-import { cn, formatTime } from '@/lib/utils'
+import { cn } from '@/lib/utils'
+
 import { PlaySequence } from '@/types/audio-player'
+import { PlayerTrackInfo } from '../player/player-track-info'
 
 export const Player = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -26,7 +29,7 @@ export const Player = () => {
 	const {
 		init,
 		currentTrack,
-		currentTime,
+
 		duration,
 		volume,
 		setVolume,
@@ -97,6 +100,7 @@ export const Player = () => {
 		const newSequence = (playSequence + 1) % 3
 		setPlaySequence(newSequence)
 	}
+
 	return (
 		<footer
 			className={cn(
@@ -117,23 +121,7 @@ export const Player = () => {
 
 			<div className='grid grid-cols-[24rem,1fr,24rem] h-full px-4'>
 				{/* Track info */}
-				<section className='flex-x-4'>
-					<div className='size-12 rounded-md overflow-hidden'>
-						<img src={currentTrack?.al.picUrl} className='size-full object-cover' />
-					</div>
-					<div className='flex-y-1'>
-						<h2 className='flex-x-4 line-clamp-1'>
-							<span className='text-sm text-primary/80'>{currentTrack?.name}</span>
-							<span className='text-xs text-primary/50'>{currentTrack?.al.name}</span>
-						</h2>
-						<div className='flex-x-4 text-xs text-primary/50'>
-							<span className='flex-x-2'>{currentTrack?.ar.map(a => a.name).join(' / ')}</span>
-							<span>
-								{formatTime(currentTime)} / {formatTime(duration)}
-							</span>
-						</div>
-					</div>
-				</section>
+				<PlayerTrackInfo />
 
 				{/* Control buttons */}
 				<section className='flex-center gap-x-4'>
@@ -156,7 +144,7 @@ export const Player = () => {
 						{sequenceIcon[playSequence as PlaySequence]}
 					</button>
 
-					{/* 音量 */}
+					{/* Volume */}
 					<div className='flex-x-2 w-24'>
 						<button className='player-btn' onClick={handleToggleMute}>
 							{volume === 0 ? <VolumeX className='size-5' /> : <Volume2 className='size-5' />}
@@ -168,6 +156,9 @@ export const Player = () => {
 							onValueChange={(value: number[]) => setVolume(value[0])}
 						/>
 					</div>
+
+					{/* Playlist button */}
+					<PlaylistButton />
 				</section>
 			</div>
 			<audio ref={audioRef} controls id='audio-player' />

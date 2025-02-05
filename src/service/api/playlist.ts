@@ -17,9 +17,11 @@ import type {
 	PlaylistDetail,
 	Song,
 	HighQualityTag,
-	CategoryTag
+	CategoryTag,
+	PlaylistSubscribers
 } from '@/types/playlist'
 import { SITE } from '@/config'
+import { Comments } from '@/types/comment'
 
 /**
  * 歌单详情
@@ -173,6 +175,57 @@ export const fetchSongDetail: SongDetailType = async ({ ids }) => {
 	})
 
 	return response.songs || []
+}
+
+/**
+ * 歌单评论
+ * 调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该歌单的所有评论 ( 不需要 登录 )
+ * @param id 专辑 id
+ * @param option limit: 取出评论数量 , 默认为 20
+ * @param option offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*20, 其中 20 为 limit 的值
+ * @param option before: 分页参数,取上一页最后一项的 time 获取下一页数据(获取超过 5000 条评论的时候需要用到)
+ */
+
+export type PlaylistCommentsParams = {
+	id: number
+	limit?: number
+	offset?: number
+	before?: number
+}
+export const fetchPlaylistComments = async ({
+	id,
+	limit,
+	offset,
+	before
+}: PlaylistCommentsParams): Promise<Comments> => {
+	const response = await fetcher<any, Comments>({
+		method: 'GET',
+		url: '/comment/playlist',
+		params: { id, limit, offset, before }
+	})
+	return response || {}
+}
+
+/**
+ * 歌单收藏者
+ * 说明 : 调用此接口 , 传入歌单 id 可获取歌单的所有收藏者
+ * @param id : 歌单 id
+ * @param option limit: 取出评论数量 , 默认为 20
+ * @param option offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*20, 其中 20 为 limit 的值
+ */
+export type PlaylistSubscribersParams = { id: number; limit?: number; offset?: number }
+export const fetchPlaylistSubscribers = async ({
+	id,
+	limit,
+	offset
+}: PlaylistSubscribersParams): Promise<PlaylistSubscribers> => {
+	const response = await fetcher<any, PlaylistSubscribers>({
+		method: 'GET',
+		url: '/playlist/subscribers',
+		params: { id, limit, offset }
+	})
+
+	return response || {}
 }
 
 // =================================

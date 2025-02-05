@@ -1,10 +1,10 @@
 import { ListPlus, Play } from 'lucide-react'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { Button } from '@/components/ui/button'
+
 import { Skeleton } from '@/components/ui/skeleton'
 import { UserAvatar } from '@/components/common/user-avatar'
-
+import { PlaylistButton } from '@/components/common/playlist-button'
 import { formatDate, thumbnail } from '@/lib/utils'
 import { PlaylistDetail } from '@/types/playlist'
 
@@ -80,15 +80,24 @@ export const DetailTopbar = ({ detail, loading }: DetailTopbarProps) => {
 						</div>
 
 						<div className='flex-x-4'>
-							<Button className='play-all-button'>
+							<PlaylistButton
+								className='play-all-button'
+								type='set'
+								playlistId={detail?.id.toString()}
+							>
 								<Play className='size-5 fill-white stroke-white' />
 								<span>播放全部</span>
-							</Button>
+							</PlaylistButton>
 
-							<Button variant='outline' className='button-free px-4 py-2 text-primary/50'>
+							<PlaylistButton
+								variant='outline'
+								className='button-free px-4 py-2 text-primary/50'
+								type='add'
+								playlistId={detail?.id.toString()}
+							>
 								<ListPlus className='size-5' />
 								<span>全部添加到播放列表</span>
-							</Button>
+							</PlaylistButton>
 						</div>
 					</section>
 				</div>

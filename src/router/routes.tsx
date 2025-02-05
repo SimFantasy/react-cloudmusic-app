@@ -83,6 +83,13 @@ export const routes: RouteObject[] = [
 				loader: protectedLoader
 			},
 			{
+				path: 'song-detail',
+				element: (
+					<LazyComponent lazyElement={lazy(() => import('@/views/song-detail'))} title='歌曲详情' />
+				),
+				loader: protectedLoader
+			},
+			{
 				path: 'search',
 				element: <LazyComponent lazyElement={lazy(() => import('@/views/search'))} title='搜索' />,
 				loader: protectedLoader

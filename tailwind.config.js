@@ -10,7 +10,8 @@ export default {
 				logo: ['Contrail One', ...defaultTheme.fontFamily.sans]
 			},
 			animation: {
-				'slow-spin': 'spin 3s linear infinite'
+				'slow-spin': 'spin 3s linear infinite',
+				'disc-spin': 'spin 5s linear infinite'
 			},
 			gridTemplateColumns: {
 				16: 'repeat(16, minmax(0, 1fr))',

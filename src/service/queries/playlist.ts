@@ -5,10 +5,15 @@ import {
 	fetchNetizensPlaylists,
 	NetizensPlaylistsParams,
 	fetchHotCategories,
-	fetchPlaylistCategories
+	fetchPlaylistCategories,
+	PlaylistCommentsParams,
+	fetchPlaylistComments,
+	PlaylistSubscribersParams,
+	fetchPlaylistSubscribers
 } from '@/service/api/playlist'
 import { SITE } from '@/config'
-import { PlaylistDetail } from '@/types/playlist'
+import { PlaylistDetail, PlaylistSubscriber } from '@/types/playlist'
+import { Comment } from '@/types/comment'
 
 // 歌单详情
 export const usePlaylistDetail = ({ playlistId }: { playlistId: string }) =>
@@ -64,5 +69,84 @@ export const useNetizensPlaylistsInfinite = ({
 			isNoMore: d => d?.hasMore === false,
 			reloadDeps: [order, cat],
 			manual: false
+		}
+	)
+
+/**
+ * 歌单评论 无限加载
+ */
+interface PlaylistCommentsResult {
+	list: Comment[]
+	hotComments: Comment[]
+	before: number
+	hasMore: boolean
+}
+
+const getPlaylistComments = async ({
+	id,
+	limit,
+	offset,
+	before
+}: PlaylistCommentsParams): Promise<PlaylistCommentsResult> => {
+	const response = await fetchPlaylistComments({ id, limit, offset, before })
+	return {
+		list: response.comments,
+		before: response.comments[response.comments.length - 1].time,
+		hotComments: response.hotComments,
+		hasMore: response.more
+	}
+}
+
+export const usePlaylistCommentsInfinite = ({
+	id,
+	page,
+	before
+}: {
+	id: number
+	page: number
+	before?: number
+}) =>
+	useInfiniteScroll(
+		() => {
+			const limit = SITE.PLAYLIST.COMMENT_LIMIT
+			const offset = (page - 1) * limit
+			return getPlaylistComments({ id, limit, offset, before })
+		},
+		{
+			isNoMore: d => d?.hasMore === false,
+			manual: true
+		}
+	)
+
+/**
+ * 歌单订阅者
+ */
+interface PlaylistSubscriberResult {
+	list: PlaylistSubscriber[]
+	hasMore: boolean
+}
+
+const getPlaylistSubscriber = async ({
+	id,
+	limit,
+	offset
+}: PlaylistSubscribersParams): Promise<PlaylistSubscriberResult> => {
+	const response = await fetchPlaylistSubscribers({ id, limit, offset })
+	return {
+		list: response.subscribers,
+		hasMore: response.more
+	}
+}
+
+export const usePlaylistSubscriberInfinite = ({ id, page }: { id: number; page: number }) =>
+	useInfiniteScroll(
+		() => {
+			const limit = SITE.PLAYLIST.SUBSCRIBE_LIMIT
+			const offset = (page - 1) * limit
+			return getPlaylistSubscriber({ id, limit, offset })
+		},
+		{
+			isNoMore: d => d?.hasMore === false,
+			manual: true
 		}
 	)

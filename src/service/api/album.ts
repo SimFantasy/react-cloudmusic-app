@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AlbumDetail, AllNewAlbums, AlbumComment } from '@/types/album'
+import type { AlbumDetail, AllNewAlbums } from '@/types/album'
+import { Comments } from '@/types/comment'
 import { fetcher } from '@/service/fetcher'
 
 /**
@@ -48,8 +49,8 @@ export const fetchAlbumComments = async ({
 	limit,
 	offset,
 	before
-}: AlbumCommentsParams): Promise<AlbumComment> => {
-	const response = await fetcher<any, AlbumComment>({
+}: AlbumCommentsParams): Promise<Comments> => {
+	const response = await fetcher<any, Comments>({
 		method: 'GET',
 		url: '/comment/album',
 		params: { id, limit, offset, before }
