@@ -11,6 +11,20 @@ export enum PlaySequence {
 }
 
 /**
+ * 播放速度枚举
+ */
+export enum PlaybackRate {
+	SLOWER = 0.5, // 慢速
+	SLOW = 0.75, // 慢速2倍
+	NORMAL = 1, // 普通速度
+	FAST = 1.25, // 快速1.25倍
+	FASTER = 1.5, // 快速
+	FASTEST = 2, // 加速2倍
+	TRIPLE = 3, // 加速3倍
+	QUADRUPLE = 4 // 加速4倍
+}
+
+/**
  * 播放器错误状态枚举
  */
 export enum PlayerError {
@@ -33,14 +47,14 @@ export enum PlayerError {
  * jymaster: 超清母带
  */
 export enum SongLevel {
-	standard = 'standard', // 标准
-	higher = 'higher', // 较高
-	exhigh = 'exhigh', // 极高
-	lossless = 'lossless', // 无损
-	hires = 'hires', // Hi-Res
-	jyeffect = 'jyeffect', // 高清环绕声
-	sky = 'sky', // 沉浸环绕声
-	jymaster = 'jymaster' // 超清母带
+	STANDARD = 'standard', // 标准
+	HIGHER = 'higher', // 较高
+	EXHIGH = 'exhigh', // 极高
+	LOSSLESS = 'lossless', // 无损
+	HIRES = 'hires', // Hi-Res
+	JYEFFECT = 'jyeffect', // 高清环绕声
+	SKY = 'sky', // 沉浸环绕声
+	JYMASTER = 'jymaster' // 超清母带
 }
 
 /**

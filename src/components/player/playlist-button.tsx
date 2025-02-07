@@ -25,7 +25,7 @@ export const PlaylistButton = () => {
 		<Sheet>
 			<SheetTrigger asChild>
 				<button className='player-btn'>
-					<ListMusic className='size-5' />
+					<ListMusic className='player-icon' />
 				</button>
 			</SheetTrigger>
 

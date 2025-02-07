@@ -58,7 +58,7 @@ export const DetailTopbar = ({ detail, loading }: DetailTopbarProps) => {
 							<h1 className='text-xl font-medium text-primary/80 line-clamp-1 truncate'>
 								{detail?.name}
 							</h1>
-							<div className='line-clamp-3'>{detail?.description}</div>
+							<div className='line-clamp-3 text-primary/50'>{detail?.description}</div>
 							<div className='flex-x-4 mt-4 text-xs'>
 								{/* Createor */}
 								<div className='flex-x-2'>

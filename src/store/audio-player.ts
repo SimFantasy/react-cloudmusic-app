@@ -17,7 +17,8 @@ import {
 	AudioPlayerState,
 	PlayerError,
 	SongLevel,
-	ParseLyric
+	ParseLyric,
+	PlaybackRate
 } from '@/types/audio-player'
 
 export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
@@ -31,8 +32,8 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 
 				volume: 1,
 				playSequence: PlaySequence.LIST_LOOP as PlaySequence,
-				playbackRate: 1,
-				songLevel: SongLevel.exhigh as SongLevel,
+				playbackRate: 1 as PlaybackRate,
+				songLevel: SongLevel.EXHIGH as SongLevel,
 
 				currentTrack: null as Track | null,
 				currentTrackIndex: -1,
@@ -262,7 +263,7 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 					const { currentTrackIndex, playlist } = get()
 
 					if (playlist.length === 0) {
-						set({ playlist })
+						set({ playlist: tracks, currentTrack: tracks[0], currentTrackIndex: 0 })
 						return
 					}
 
@@ -301,7 +302,7 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 				},
 
 				// 设置播放速率
-				setPlaybackRate: (value: number) => {
+				setPlaybackRate: (value: PlaybackRate) => {
 					const { _plyr } = get()
 					if (_plyr) {
 						_plyr.speed = value

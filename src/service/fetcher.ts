@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { SITE } from '@/config'
+import { cookieStorage } from '@/lib/storage'
 
 const createInstance = () => {
 	const instance = axios.create({
@@ -18,7 +19,15 @@ const createInstance = () => {
 	return instance
 }
 
-const handleRequest = (config: InternalAxiosRequestConfig) => config
+const handleRequest = (config: InternalAxiosRequestConfig) => {
+	const cookie = cookieStorage?.get()
+	if (cookie || typeof cookie !== 'undefined') {
+		config.params = config.params || {}
+		config.params.cookie = cookie
+		config.params.timerstamp = +Date.now()
+	}
+	return config
+}
 const handleRequestError = (error: any) => Promise.reject(error)
 
 const handleResponse = (response: AxiosResponse) => {

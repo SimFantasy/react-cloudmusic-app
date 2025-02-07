@@ -1,16 +1,6 @@
 import { useRef, useEffect } from 'react'
 import Plyr from 'plyr'
-import {
-	Pause,
-	Play,
-	SkipBack,
-	SkipForward,
-	Repeat,
-	Repeat1,
-	Shuffle,
-	VolumeX,
-	Volume2
-} from 'lucide-react'
+import { Pause, Play, SkipBack, SkipForward } from 'lucide-react'
 
 import { Slider } from '@/components/ui/slider'
 import { PlaylistButton } from '@/components/player/playlist-button'
@@ -18,8 +8,11 @@ import { PlaylistButton } from '@/components/player/playlist-button'
 import { useAudioPlayer } from '@/store/audio-player'
 import { cn } from '@/lib/utils'
 
-import { PlaySequence } from '@/types/audio-player'
 import { PlayerTrackInfo } from '../player/player-track-info'
+import { VolumeButton } from '../player/volume-button'
+import { PlaySequenceButton } from '../player/play-sequence-button'
+import { PlaybackRateButton } from '../player/playback-rate-button'
+import { SongLevelButton } from '../player/song-level-button'
 
 export const Player = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -29,12 +22,7 @@ export const Player = () => {
 	const {
 		init,
 		currentTrack,
-
 		duration,
-		volume,
-		setVolume,
-		playSequence,
-		setPlaySequence,
 		toggle,
 		changeTrack,
 		isPlaying,
@@ -71,16 +59,6 @@ export const Player = () => {
 		}
 	}, [currentTrack, setIsShowPlayer, isShowPlayer])
 
-	const sequenceIcon = {
-		[PlaySequence.LIST_LOOP]: <Repeat className='size-4' />,
-		[PlaySequence.SINGLE_LOOP]: <Repeat1 className='size-4' />,
-		[PlaySequence.SHUFFLE]: <Shuffle className='size-4' />
-	}
-
-	const handleToggleMute = () => {
-		setVolume(volume === 0 ? 1 : 0)
-	}
-
 	const handleSeekCommit = (value: number[]) => {
 		const newTime = (value[0] / 100) * duration
 		setProgress(value[0])
@@ -94,11 +72,6 @@ export const Player = () => {
 		const newTime = (value[0] / 100) * duration
 		setProgress(value[0])
 		setCurrentTime(newTime)
-	}
-
-	const handleChangePlaySequence = () => {
-		const newSequence = (playSequence + 1) % 3
-		setPlaySequence(newSequence)
 	}
 
 	return (
@@ -125,37 +98,30 @@ export const Player = () => {
 
 				{/* Control buttons */}
 				<section className='flex-center gap-x-4'>
+					<PlaySequenceButton />
+
 					<button className='player-btn' onClick={() => changeTrack('previous')}>
-						<SkipBack />
+						<SkipBack className='player-icon-fill' />
 					</button>
 
-					<button className='player-btn' onClick={toggle}>
-						{isPlaying ? <Pause className='size-6' /> : <Play className='size-6' />}
+					<button className='player-play-btn' onClick={toggle}>
+						{isPlaying ? <Pause className='play-icon' /> : <Play className='play-icon' />}
 					</button>
 
 					<button className='player-btn' onClick={() => changeTrack('next')}>
-						<SkipForward />
+						<SkipForward className='player-icon-fill' />
 					</button>
+
+					<PlaybackRateButton />
 				</section>
 
 				{/* Options buttons */}
 				<section className='flex-end gap-x-4'>
-					<button className='player-btn' onClick={handleChangePlaySequence}>
-						{sequenceIcon[playSequence as PlaySequence]}
-					</button>
+					{/* Song level */}
+					<SongLevelButton />
 
 					{/* Volume */}
-					<div className='flex-x-2 w-24'>
-						<button className='player-btn' onClick={handleToggleMute}>
-							{volume === 0 ? <VolumeX className='size-5' /> : <Volume2 className='size-5' />}
-						</button>
-						<Slider
-							max={1}
-							step={0.1}
-							value={[volume]}
-							onValueChange={(value: number[]) => setVolume(value[0])}
-						/>
-					</div>
+					<VolumeButton />
 
 					{/* Playlist button */}
 					<PlaylistButton />
