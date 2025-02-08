@@ -2,9 +2,10 @@ import { MvCard } from '@/components/mv/mv-card'
 import { MvSkeleton } from '@/components/mv/mv-skeleton'
 import { SITE } from '@/config'
 import { Mv } from '@/types/artist'
+import { SearchMv } from '@/types/search'
 
 type MvListProps = {
-	mvs?: Mv[]
+	mvs?: Mv[] | SearchMv[]
 	loading: boolean
 }
 

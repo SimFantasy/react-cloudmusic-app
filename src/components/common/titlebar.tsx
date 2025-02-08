@@ -6,14 +6,17 @@ import { useNavigate } from 'react-router'
 type TitlebarProps = {
 	title: string
 	link?: string
+	onClick?: () => void
 }
 
-export const Titlebar = ({ title, link }: TitlebarProps) => {
+export const Titlebar = ({ title, link, onClick }: TitlebarProps) => {
 	const navigate = useNavigate()
 
 	const handleLink = () => {
 		if (link) {
 			navigate(link)
+		} else if (onClick) {
+			onClick()
 		}
 	}
 	return (
@@ -22,7 +25,7 @@ export const Titlebar = ({ title, link }: TitlebarProps) => {
 			onClick={handleLink}
 		>
 			<h1 className='text-lg font-semibold'>{title}</h1>
-			{link && <ChevronRight className='sise-5' />}
+			{(link || onClick) && <ChevronRight className='sise-4' />}
 		</div>
 	)
 }

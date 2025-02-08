@@ -2,9 +2,10 @@ import { CirclePlay, ListPlus, Play } from 'lucide-react'
 
 import { thumbnail } from '@/lib/utils'
 import { NewSongResult } from '@/types/discover'
+import { Song } from '@/types/playlist'
 
 type SonglistCardProps = {
-	song: NewSongResult
+	song: NewSongResult | Song
 }
 
 export const SonglistCard = ({ song }: SonglistCardProps) => {
@@ -21,7 +22,11 @@ export const SonglistCard = ({ song }: SonglistCardProps) => {
 				</div>
 
 				{/* Image */}
-				<img src={thumbnail(song.picUrl, 120)} alt={song.name} className='size-full object-cover' />
+				<img
+					src={thumbnail((song as NewSongResult).picUrl || (song as Song).al.picUrl || '', 120)}
+					alt={song.name}
+					className='size-full object-cover'
+				/>
 			</div>
 
 			<div className='flex-y-1'>
@@ -29,7 +34,8 @@ export const SonglistCard = ({ song }: SonglistCardProps) => {
 					{song.name}
 				</h3>
 				<span className='text-xs text-primary/40 trans-colors group-hover:text-blue-500/60'>
-					{(song as NewSongResult)?.song?.artists.map(artist => artist.name).join(' / ')}
+					{(song as NewSongResult)?.song?.artists.map(artist => artist.name).join(' / ') ||
+						(song as Song).ar.map(artist => artist.name).join(' / ')}
 				</span>
 			</div>
 

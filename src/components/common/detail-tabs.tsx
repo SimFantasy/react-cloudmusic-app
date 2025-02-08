@@ -1,25 +1,12 @@
 import { cn } from '@/lib/utils'
-import { Artist } from '@/types/artist'
 
-type ArtistDetailTabsProps = {
-	artist?: Artist
-	loading: boolean
+type DetailTabsProps = {
+	tabs: { name: string; count?: number }[]
 	currentTab: string
-	setCurrentTab: React.Dispatch<React.SetStateAction<string>>
+	setCurrentTab: (tab: string) => void
 }
 
-export const ArtistDetailTabs = ({
-	artist,
-	loading,
-	currentTab,
-	setCurrentTab
-}: ArtistDetailTabsProps) => {
-	const tabs = [
-		{ name: '歌曲', count: artist?.musicSize },
-		{ name: '专辑', count: artist?.albumSize },
-		{ name: 'MV', count: artist?.mvSize },
-		{ name: '歌手详情' }
-	]
+export const DetailTabs = ({ tabs, currentTab, setCurrentTab }: DetailTabsProps) => {
 	return (
 		<div className='flex-x-4 my-6'>
 			{tabs.map(tab => (

@@ -1,16 +1,20 @@
-import { Mv } from '@/types/artist'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { formatCount, thumbnail } from '@/lib/utils'
 import { CirclePlay, Play } from 'lucide-react'
+import { Link } from 'react-router'
+
+import { AspectRatio } from '@/components/ui/aspect-ratio'
+
+import { formatCount, thumbnail } from '@/lib/utils'
+import { Mv } from '@/types/artist'
+import { SearchMv } from '@/types/search'
 
 type MvCardProps = {
-	mv: Mv
+	mv: Mv | SearchMv
 }
 
 export const MvCard = ({ mv }: MvCardProps) => {
 	if (!mv) return null
 	return (
-		<div className='group flex-y-2 w-full cursor-pointer'>
+		<Link to={`/mv/${mv.id}`} className='group flex-y-2 w-full cursor-pointer'>
 			<AspectRatio ratio={16 / 9} className='relative w-full rounded-lg overflow-hidden'>
 				{/* Overlay */}
 				<div className='absolute z-10 inset-0 flex-y-1 justify-between size-full bg-blue-950/0 trans-colors group-hover:bg-blue-950/40'>
@@ -29,11 +33,15 @@ export const MvCard = ({ mv }: MvCardProps) => {
 				</div>
 
 				{/* Cover */}
-				<img src={thumbnail(mv.imgurl, 480)} alt={mv.name} className='size-full object-cover' />
+				<img
+					src={thumbnail((mv as Mv).imgurl || (mv as SearchMv).cover, 480, 480)}
+					alt={mv.name}
+					className='size-full object-cover'
+				/>
 			</AspectRatio>
 			<h2 className='text-center text-sm text-primary/80 line-clamp-1 group-hover:text-blue-500'>
 				{mv.name}
 			</h2>
-		</div>
+		</Link>
 	)
 }

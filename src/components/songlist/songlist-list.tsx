@@ -4,10 +4,10 @@ import { SongListSkeleton } from '@/components/songlist/songlist-skeleton'
 import { SITE } from '@/config'
 
 import { NewSongResult } from '@/types/discover'
-import { Daum } from '@/types/newsong'
+import { Song } from '@/types/playlist'
 
 type SonglistListProps = {
-	songs?: NewSongResult[]
+	songs?: NewSongResult[] | Song[]
 	loading: boolean
 }
 

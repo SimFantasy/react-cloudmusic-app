@@ -17,9 +17,11 @@ export const Searchbar = () => {
 		}
 	}, [query])
 
-	const handleSubmit = () => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.stopPropagation()
+		e.preventDefault()
 		if (keyword.trim() === '') return
-		if (deferredKeyword) {
+		if (deferredKeyword && deferredKeyword.trim() !== '') {
 			navigate(`/search?q=${deferredKeyword}`)
 		}
 	}
@@ -29,7 +31,7 @@ export const Searchbar = () => {
 			className='group flex-x-1 w-80 h-9 border border-border bg-blue-500/0 rounded-md trans-colors hover:border-blue-200 hover:bg-blue-500/10'
 		>
 			<button
-				type='submit'
+				type='button'
 				className='flex-center w-7 h-full text-primary/40 group-hover:text-blue-500'
 			>
 				<Search className='size-4' />

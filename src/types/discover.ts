@@ -1,5 +1,3 @@
-import { Song, Track } from './playlist'
-
 // Personalized
 export interface PersonalizedPlaylist {
 	hasTaste: boolean

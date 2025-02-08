@@ -38,6 +38,13 @@ export const SITE = {
 		NEWSONG_LIMIT: 50,
 		SONG_LIMIT: 24,
 		COMMENT_LIMIT: 20
+	},
+	MV: {
+		COMMENT_LIMIT: 20
+	},
+	SEARCH: {
+		LIMIT: 24,
+		COMPLEX_LIMIT: 6
 	}
 }
 
