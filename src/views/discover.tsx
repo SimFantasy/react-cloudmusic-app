@@ -4,7 +4,7 @@ import { useDiscoverPlaylist, useDiscoverNewSong } from '@/service/queries/disco
 import { PlaylistList } from '@/components/playlist/playlist-list'
 import { SonglistList } from '@/components/songlist/songlist-list'
 
-const Discover = () => {
+const Discover: React.FC = () => {
 	const { data: playlists, loading: playlistsLoading } = useDiscoverPlaylist()
 	const { data: newSongs, loading: newSongsLoading } = useDiscoverNewSong()
 

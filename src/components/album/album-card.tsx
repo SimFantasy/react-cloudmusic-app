@@ -10,7 +10,7 @@ type AlbumCardProps = {
 	album: Album
 }
 
-export const AlbumCard = ({ album }: AlbumCardProps) => {
+export const AlbumCard: React.FC<AlbumCardProps> = ({ album }) => {
 	if (!album) return null
 	return (
 		<Link to={`/album/${album.id}`} className='group flex-y-2 w-full'>

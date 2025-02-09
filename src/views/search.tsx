@@ -11,7 +11,7 @@ import { DetailTabs } from '@/components/common/detail-tabs'
 
 import { SearchType } from '@/types/search'
 
-const Search = () => {
+const Search: React.FC = () => {
 	const [currentTab, setCurrentTab] = useState('综合')
 	const [searchParams] = useSearchParams()
 	const query = searchParams.get('q') || ''

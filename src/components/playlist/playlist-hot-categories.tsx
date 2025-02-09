@@ -7,7 +7,7 @@ import { useHotCategories } from '@/service/queries/playlist'
 import { useMainScrolled } from '@/hooks/use-main-scrolled'
 import { cn } from '@/lib/utils'
 
-export const PlaylistHotCategories = () => {
+export const PlaylistHotCategories: React.FC = () => {
 	const { data, loading } = useHotCategories()
 
 	const [catState, setCatState] = useUrlState<{ cat?: string }>(undefined)

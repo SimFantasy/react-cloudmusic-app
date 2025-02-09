@@ -7,7 +7,7 @@ import { NewsongCategories } from '@/components/newsong/newsong-categories'
 import { useNewSongs } from '@/service/queries/newsong'
 import { DetailSongList } from '@/components/playlist-detail/detail-song-list'
 
-const NewSong = () => {
+const NewSong: React.FC = () => {
 	const [urlState, setUrlState] = useUrlState<{ type?: string }>(undefined)
 
 	const { data, loading } = useNewSongs({ type: urlState?.type })

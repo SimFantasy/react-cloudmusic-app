@@ -13,7 +13,7 @@ type DetailTopbarProps = {
 	loading: boolean
 }
 
-export const DetailTopbar = ({ detail, loading }: DetailTopbarProps) => {
+export const DetailTopbar: React.FC<DetailTopbarProps> = ({ detail, loading }) => {
 	return (
 		<>
 			{loading ? (

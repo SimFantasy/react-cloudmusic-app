@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
-export const SearchCardSkeleton = () => {
+export const SearchCardSkeleton: React.FC = () => {
 	return (
 		<div className='group grid grid-cols-[auto,1fr] items-center gap-x-4 p-4'>
 			<Skeleton className='size-16 rounded-lg' />

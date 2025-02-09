@@ -27,7 +27,7 @@ type LoginQrcodeProps = {
 
 let timer: number | null = null
 
-export const LoginQrcode = ({ setOpen, setAuthType }: LoginQrcodeProps) => {
+export const LoginQrcode: React.FC<LoginQrcodeProps> = ({ setOpen, setAuthType }) => {
 	const [qrState, setQrState] = useState<QRCodeStatus>(QRCodeStatus.LOADING)
 	const [qrCodeImageUrl, setQrCodeImageUrl] = useState('')
 

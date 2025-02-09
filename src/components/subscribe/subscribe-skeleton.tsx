@@ -1,3 +1,3 @@
-export const SubscribeSkeleton = () => {
+export const SubscribeSkeleton: React.FC = () => {
 	return <div>SubscribeSkeleton</div>
 }

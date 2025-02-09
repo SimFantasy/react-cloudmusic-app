@@ -9,7 +9,7 @@ type AlbumListProps = {
 	loading: boolean
 }
 
-export const AlbumList = ({ albums, loading }: AlbumListProps) => {
+export const AlbumList: React.FC<AlbumListProps> = ({ albums, loading }) => {
 	return (
 		<div className='grid grid-cols-4 gap-4 xl:grid-cols-6'>
 			{loading

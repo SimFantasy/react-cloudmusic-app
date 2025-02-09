@@ -1,7 +1,5 @@
 import { RouterProvider } from 'react-router'
-
 import { Toaster } from '@/components/ui/sonner'
-
 import { router } from '@/router'
 
 const App = () => {

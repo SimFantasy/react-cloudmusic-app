@@ -7,7 +7,7 @@ import { useToplists, useToplistDetail } from '@/service/queries/toplist'
 import { TOPLIST_CATEGORY } from '@/config'
 import { filterToplist, filterOtherToplist } from '@/lib/utils'
 
-const Toplist = () => {
+const Toplist: React.FC = () => {
 	const { data, loading } = useToplists()
 	const { data: detailData, loading: detailLoading } = useToplistDetail()
 	return (

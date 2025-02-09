@@ -9,7 +9,7 @@ type ToplistListProps = {
 	p?: 0 | 1 | 2 | 3
 }
 
-export const ToplistList = ({ toplists, loading, p }: ToplistListProps) => {
+export const ToplistList: React.FC<ToplistListProps> = ({ toplists, loading, p }) => {
 	return (
 		<div className='grid grid-cols-6 gap-4'>
 			{loading

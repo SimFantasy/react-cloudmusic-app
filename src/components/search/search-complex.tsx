@@ -17,7 +17,7 @@ type SearchComplexProps = {
 	setCurrentTab: (tab: string) => void
 }
 
-export const SearchComplex = ({ query, setCurrentTab }: SearchComplexProps) => {
+export const SearchComplex: React.FC<SearchComplexProps> = ({ query, setCurrentTab }) => {
 	const { data, loading } = useSearchComplex(query)
 	const artist = data?.complex.artist.artists[0]
 	const mv = data?.mvs[0]

@@ -7,7 +7,7 @@ type ArtistCategoriesProps = {
 	setUrlState: (state: React.SetStateAction<ArtistCategory>) => void
 }
 
-export const ArtistCategories = ({ urlState, setUrlState }: ArtistCategoriesProps) => {
+export const ArtistCategories: React.FC<ArtistCategoriesProps> = ({ urlState, setUrlState }) => {
 	return (
 		<div className='flex-y-4'>
 			<AreaCategories urlState={urlState} setUrlState={setUrlState} />

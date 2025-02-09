@@ -7,11 +7,11 @@ type UserAvatarProps = {
 	size?: 'sm' | 'md' | 'lg'
 }
 
-export const UserAvatar = ({
+export const UserAvatar: React.FC<UserAvatarProps> = ({
 	image = '/images/default-avatar.png',
 	name = 'Guest',
 	size = 'sm'
-}: UserAvatarProps = {}) => {
+} = {}) => {
 	return (
 		<Avatar
 			className={cn({

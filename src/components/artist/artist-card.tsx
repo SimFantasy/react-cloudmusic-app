@@ -10,7 +10,7 @@ type ArtistCardProps = {
 	artist: Artist
 }
 
-export const ArtistCard = ({ artist }: ArtistCardProps) => {
+export const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) => {
 	return (
 		<Link
 			to={`/artist/${artist.id}`}

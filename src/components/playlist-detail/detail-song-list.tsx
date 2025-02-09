@@ -8,7 +8,7 @@ type DetailSongListProps = {
 	loading: boolean
 }
 
-export const DetailSongList = ({ songs, loading }: DetailSongListProps) => {
+export const DetailSongList: React.FC<DetailSongListProps> = ({ songs, loading }) => {
 	return (
 		<div className='flex-y-1'>
 			{loading

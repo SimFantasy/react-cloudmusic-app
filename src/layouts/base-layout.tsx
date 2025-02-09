@@ -7,7 +7,7 @@ import { Player } from '@/components/layout/player'
 
 import { useMainScrolled } from '@/hooks/use-main-scrolled'
 
-const BaseLayout = () => {
+const BaseLayout: React.FC = () => {
 	const ref = useRef<HTMLDivElement>(null)
 	useMainScrolled({ ref })
 	return (

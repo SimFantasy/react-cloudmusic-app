@@ -14,7 +14,7 @@ import { PlaySequenceButton } from '../player/play-sequence-button'
 import { PlaybackRateButton } from '../player/playback-rate-button'
 import { SongLevelButton } from '../player/song-level-button'
 
-export const Player = () => {
+export const Player: React.FC = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null)
 	const plyrRef = useRef<Plyr | null>(null)
 	const initializedRef = useRef(false)

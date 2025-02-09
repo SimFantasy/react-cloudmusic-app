@@ -6,7 +6,7 @@ type LoaderProps = {
 	className?: string
 }
 
-export const Loader = ({ text, className }: LoaderProps) => {
+export const Loader: React.FC<LoaderProps> = ({ text, className }) => {
 	return (
 		<div className={cn('flex-x-2', className)}>
 			<Music2 className='size-4 text-blue-500 animate-bounce' />

@@ -5,7 +5,7 @@ type CountDownProps = {
 	time: number
 }
 
-export const CountDown = ({ onEnd, time }: CountDownProps) => {
+export const CountDown: React.FC<CountDownProps> = ({ onEnd, time }) => {
 	const [count, setCount] = useState<number>(time)
 
 	useEffect(() => {

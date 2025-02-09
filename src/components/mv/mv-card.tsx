@@ -11,7 +11,7 @@ type MvCardProps = {
 	mv: Mv | SearchMv
 }
 
-export const MvCard = ({ mv }: MvCardProps) => {
+export const MvCard: React.FC<MvCardProps> = ({ mv }) => {
 	if (!mv) return null
 	return (
 		<Link to={`/mv/${mv.id}`} className='group flex-y-2 w-full cursor-pointer'>

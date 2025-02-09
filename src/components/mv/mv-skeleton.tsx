@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { AspectRatio } from '@/components//ui/aspect-ratio'
 
-export const MvSkeleton = () => {
+export const MvSkeleton: React.FC = () => {
 	return (
 		<div className='flex-y-2 w-full'>
 			<AspectRatio ratio={16 / 9} className='w-full rounded-lg overflow-hidden'>

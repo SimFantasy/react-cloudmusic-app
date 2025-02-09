@@ -7,7 +7,7 @@ type MvPlayerProps = {
 	br?: number
 }
 
-export const MvPlayer = ({ mvid, br }: MvPlayerProps) => {
+export const MvPlayer: React.FC<MvPlayerProps> = ({ mvid, br }) => {
 	const { data, loading } = useMvUrl(mvid, br)
 
 	return (

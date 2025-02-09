@@ -9,7 +9,7 @@ import { ArtistList } from '@/components/artist/artist-list'
 import { useArtistsInfinite } from '@/service/queries/artist'
 import type { ArtistCategory } from '@/types/artist'
 
-const Artist = () => {
+const Artist: React.FC = () => {
 	const [urlState, setUrlState] = useUrlState<ArtistCategory>(undefined)
 	const [page, setPage] = useRafState(1)
 	const ref = useRef<HTMLDivElement>(null)

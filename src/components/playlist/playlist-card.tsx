@@ -12,7 +12,7 @@ type PlaylistCardProps = {
 	playlist: PlaylistResult | PlaylistDetail
 }
 
-export const PlaylistCard = ({ playlist }: PlaylistCardProps) => {
+export const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlist }) => {
 	if (!playlist) return null
 
 	return (

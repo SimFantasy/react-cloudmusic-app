@@ -7,7 +7,7 @@ type ArtistListProps = {
 	loading: boolean
 }
 
-export const ArtistList = ({ artists, loading }: ArtistListProps) => {
+export const ArtistList: React.FC<ArtistListProps> = ({ artists, loading }) => {
 	return (
 		<div className='grid grid-cols-4 gap-4 xl:grid-cols-6'>
 			{loading

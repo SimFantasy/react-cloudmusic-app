@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router'
 import { CircleX, Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export const Searchbar = () => {
+export const Searchbar: React.FC = () => {
 	const navigate = useNavigate()
 	const [searchParams] = useSearchParams()
 	const query = searchParams.get('q')

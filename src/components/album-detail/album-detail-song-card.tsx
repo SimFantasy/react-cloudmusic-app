@@ -7,7 +7,7 @@ type AlbumDetailSongCardProps = {
 	index: number
 }
 
-export const AlbumDetailSongCard = ({ song, index }: AlbumDetailSongCardProps) => {
+export const AlbumDetailSongCard: React.FC<AlbumDetailSongCardProps> = ({ song, index }) => {
 	return (
 		<div
 			className={cn(

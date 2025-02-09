@@ -10,7 +10,7 @@ type DetailSongCardProps = {
 	index: number
 }
 
-export const DetailSongCard = ({ song, index }: DetailSongCardProps) => {
+export const DetailSongCard: React.FC<DetailSongCardProps> = ({ song, index }) => {
 	const songPic = (song as Track)?.al?.picUrl || (song as Daum)?.album?.picUrl
 	const songName = (song as Track)?.name || (song as Daum)?.name
 	const trackName = (song as Track)?.al?.name || (song as Daum)?.album?.name

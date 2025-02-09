@@ -14,7 +14,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { useAudioPlayer } from '@/store/audio-player'
 import { PlaylistButtonList } from './playlist-button-list'
 
-export const PlaylistButton = () => {
+export const PlaylistButton: React.FC = () => {
 	const playlist = useAudioPlayer(state => state.playlist)
 	const setPlaylist = useAudioPlayer(state => state.setPlaylist)
 

@@ -14,14 +14,14 @@ type SearcCardProps = {
 	loading: boolean
 }
 
-export const SearchCard = ({
+export const SearchCard: React.FC<SearcCardProps> = ({
 	link,
 	image,
 	imageType = 'circle',
 	title,
 	info,
 	loading
-}: SearcCardProps) => {
+}) => {
 	return (
 		<>
 			{loading ? (

@@ -5,7 +5,7 @@ type PlaylistButtonListProps = {
 	playlists?: Track[]
 }
 
-export const PlaylistButtonList = ({ playlists }: PlaylistButtonListProps) => {
+export const PlaylistButtonList: React.FC<PlaylistButtonListProps> = ({ playlists }) => {
 	return (
 		<div className='flex-y-1'>
 			{playlists?.map((playlist, index) => (

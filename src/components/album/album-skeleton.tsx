@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { AspectRatio } from '@/components//ui/aspect-ratio'
 
-export const AlbumSkeleton = () => {
+export const AlbumSkeleton: React.FC = () => {
 	return (
 		<div className='group flex-y-2 w-full'>
 			<AspectRatio ratio={1} className='relative w-full rounded-lg overflow-hidden'>

@@ -8,7 +8,7 @@ import { Loader } from '@/components/common/loader'
 import { usePlaylistCategories } from '@/service/queries/playlist'
 import { cn } from '@/lib/utils'
 
-export const PlaylistCategories = () => {
+export const PlaylistCategories: React.FC = () => {
 	const [open, setOpen] = useState(false)
 	const [currentTab, setCurrentTab] = useState('0')
 

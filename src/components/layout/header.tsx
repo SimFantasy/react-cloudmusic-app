@@ -6,7 +6,7 @@ import { Searchbar } from '@/components/layout/searchbar'
 import { UserButton } from '@/components/layout/user-button'
 import { OptionsButton } from '@/components/layout//options-button'
 
-export const Header = () => {
+export const Header: React.FC = () => {
 	const navigate = useNavigate()
 	return (
 		<header className='absolute z-[800] top-0 right-0 flex-x-4 justify-between px-4 w-full h-16 bg-card/95 backdrop-blur-sm'>

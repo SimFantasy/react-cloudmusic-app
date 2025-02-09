@@ -10,7 +10,7 @@ import { ArtistDetailDescription } from '@/components/artist-detail/artist-detai
 
 import { DetailTabs } from '@/components/common/detail-tabs'
 
-const ArtistDetail = () => {
+const ArtistDetail: React.FC = () => {
 	const { artistId } = useParams<{ artistId: string }>()
 	const [currentTab, setCurrentTab] = useState('歌曲')
 	const { data, loading } = useArtistDetail({ id: Number(artistId) })

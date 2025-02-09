@@ -9,7 +9,7 @@ import { useMvDetail, useMvDynamic } from '@/service/queries/mv'
 import { formatDate, thumbnail } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 
-const MvDetail = () => {
+const MvDetail: React.FC = () => {
 	const { mvId } = useParams<{ mvId: string }>()
 
 	const { data: mvDetail } = useMvDetail(Number(mvId))

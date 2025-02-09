@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 
 import { useNetizensPlaylistsInfinite } from '@/service/queries/playlist'
 
-const Playlist = () => {
+const Playlist: React.FC = () => {
 	const [searchParams] = useSearchParams()
 	const [page, setPage] = useRafState(1)
 	const ref = useRef<HTMLDivElement>(null)

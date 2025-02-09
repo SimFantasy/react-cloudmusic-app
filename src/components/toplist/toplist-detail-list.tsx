@@ -7,7 +7,7 @@ type ToplistDetailListProps = {
 	loading: boolean
 }
 
-export const ToplistDetailList = ({ toplists, loading }: ToplistDetailListProps) => {
+export const ToplistDetailList: React.FC<ToplistDetailListProps> = ({ toplists, loading }) => {
 	return (
 		<div className='grid grid-cols-3 gap-4'>
 			{loading

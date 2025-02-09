@@ -37,7 +37,7 @@ type LoginPhoneProps = {
 	setAuthType: (authType: AuthTypeStatus) => void
 }
 
-export const LoginPhone = ({ setOpen, authType, setAuthType }: LoginPhoneProps) => {
+export const LoginPhone: React.FC<LoginPhoneProps> = ({ setOpen, authType, setAuthType }) => {
 	const [showCountDown, setShowCountDown] = useState(false)
 	const [codeIsPending, codeStartTransition] = useTransition()
 	const [smsIsPending, smsStartTransition] = useTransition()

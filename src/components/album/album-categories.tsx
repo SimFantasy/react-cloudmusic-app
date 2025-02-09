@@ -6,7 +6,7 @@ type AlbumCategoriesProps = {
 	setUrlState: (state: React.SetStateAction<{ area?: string }>) => void
 }
 
-export const AlbumCategories = ({ urlState, setUrlState }: AlbumCategoriesProps) => {
+export const AlbumCategories: React.FC<AlbumCategoriesProps> = ({ urlState, setUrlState }) => {
 	return (
 		<div className='flex-x-4'>
 			<button

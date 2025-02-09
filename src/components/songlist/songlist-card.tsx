@@ -8,7 +8,7 @@ type SonglistCardProps = {
 	song: NewSongResult | Song
 }
 
-export const SonglistCard = ({ song }: SonglistCardProps) => {
+export const SonglistCard: React.FC<SonglistCardProps> = ({ song }) => {
 	if (!song) return null
 	return (
 		<section className='group grid grid-cols-[auto,1fr,auto] gap-2 items-center p-2 h-16 bg-transparent rounded-lg trans-colors hover:bg-blue-500/10'>

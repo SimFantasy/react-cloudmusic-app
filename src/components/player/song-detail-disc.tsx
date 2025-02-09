@@ -3,7 +3,7 @@ import cursorImage from '@/assets/images/disc-cursor.png'
 import { cn, thumbnail } from '@/lib/utils'
 import { useAudioPlayer } from '@/store/audio-player'
 
-export const SongDetailDisc = () => {
+export const SongDetailDisc: React.FC = () => {
 	const { currentTrack, isPlaying } = useAudioPlayer()
 	const coverImage = thumbnail(currentTrack?.al.picUrl || '', 1000)
 	return (

@@ -10,7 +10,7 @@ type AlbumDetailTopbarProps = {
 	loading: boolean
 }
 
-export const AlbumDetailTopbar = ({ detail, loading }: AlbumDetailTopbarProps) => {
+export const AlbumDetailTopbar: React.FC<AlbumDetailTopbarProps> = ({ detail, loading }) => {
 	return (
 		<>
 			{loading ? (

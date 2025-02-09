@@ -7,7 +7,7 @@ type CommentCardProps = {
 	comment: Comment
 }
 
-export const CommentCard = ({ comment }: CommentCardProps) => {
+export const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
 	return (
 		<div className='grid grid-cols-[auto,1fr] gap-4 items-start pb-4 w-full border-b border-primary/5'>
 			<UserAvatar image={comment.user.avatarUrl} name={comment.user.nickname} size='lg' />

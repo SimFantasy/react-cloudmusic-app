@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
 
 import { SongLevel } from '@/types/audio-player'
 
-export const SongLevelButton = () => {
+export const SongLevelButton: React.FC = () => {
 	const songLevel = useAudioPlayer(state => state.songLevel)
 	const setSongLevel = useAudioPlayer(state => state.setSongLevel)
 

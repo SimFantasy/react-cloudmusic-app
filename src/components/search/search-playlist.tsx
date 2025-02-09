@@ -2,6 +2,6 @@ type SearchPlaylistProps = {
 	query: string
 }
 
-export const SearchPlaylist = ({ query }: SearchPlaylistProps) => {
+export const SearchPlaylist: React.FC<SearchPlaylistProps> = ({ query }) => {
 	return <div>SearchPlaylist</div>
 }

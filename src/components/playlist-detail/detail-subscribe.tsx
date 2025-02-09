@@ -10,7 +10,7 @@ type DetailSubscribeProps = {
 	playlistId: number
 }
 
-export const DetailSubscribe = ({ playlistId }: DetailSubscribeProps) => {
+export const DetailSubscribe: React.FC<DetailSubscribeProps> = ({ playlistId }) => {
 	const [page, setPage] = useRafState(1)
 	const ref = useRef<HTMLDivElement>(null)
 	const [inViewport] = useInViewport(ref)

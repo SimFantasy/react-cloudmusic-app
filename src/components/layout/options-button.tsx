@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { useTheme } from '@/hooks/use-theme'
 import { cn } from '@/lib/utils'
 
-export const OptionsButton = () => {
+export const OptionsButton: React.FC = () => {
 	const { theme, setTheme } = useTheme()
 	const handleThemeChange = () => {
 		setTheme(theme === 'light' ? 'dark' : 'light')

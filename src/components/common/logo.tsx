@@ -8,7 +8,7 @@ type LogoProps = {
 	size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 }
 
-export const Logo = ({ className, size = 'lg' }: LogoProps) => {
+export const Logo: React.FC<LogoProps> = ({ className, size = 'lg' }) => {
 	return (
 		<Link to={ROUTES.HOME} className='flex-x-2'>
 			<Disc3

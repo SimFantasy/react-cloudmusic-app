@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useRafState, useInViewport, useDebounceFn } from 'ahooks'
 
 import { Button } from '@/components/ui/button'
@@ -10,7 +10,7 @@ type ArtistDetailMvListProps = {
 	artistId?: string
 }
 
-export const ArtistDetailMvList = ({ artistId }: ArtistDetailMvListProps) => {
+export const ArtistDetailMvList: React.FC<ArtistDetailMvListProps> = ({ artistId }) => {
 	const [page, setPage] = useRafState(1)
 	const ref = useRef<HTMLDivElement>(null)
 	const [inViewport] = useInViewport(ref)

@@ -10,7 +10,7 @@ type ToplistCardProps = {
 	toplist: TopList
 	p?: 0 | 1 | 2 | 3
 }
-export const ToplistCard = ({ toplist, p = 1 }: ToplistCardProps) => {
+export const ToplistCard: React.FC<ToplistCardProps> = ({ toplist, p = 1 }) => {
 	return (
 		<Link to={`/playlist/${toplist.id}`} className='group w-full'>
 			<AspectRatio ratio={1} className='relative w-full'>

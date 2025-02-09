@@ -2,7 +2,7 @@ import { NAVS } from '@/config'
 import { cn } from '@/lib/utils'
 import { NavLink } from 'react-router'
 
-export const Navbar = () => {
+export const Navbar: React.FC = () => {
 	return (
 		<nav className='flex-y-1 px-4'>
 			{NAVS.map(nav => {

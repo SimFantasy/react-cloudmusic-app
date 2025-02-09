@@ -6,7 +6,7 @@ type DetailTabsProps = {
 	setCurrentTab: (tab: string) => void
 }
 
-export const DetailTabs = ({ tabs, currentTab, setCurrentTab }: DetailTabsProps) => {
+export const DetailTabs: React.FC<DetailTabsProps> = ({ tabs, currentTab, setCurrentTab }) => {
 	return (
 		<div className='flex-x-4 my-6'>
 			{tabs.map(tab => (

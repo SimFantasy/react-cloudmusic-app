@@ -10,7 +10,7 @@ type DetailCommentProps = {
 	playlistId: number
 }
 
-export const DetailComment = ({ playlistId }: DetailCommentProps) => {
+export const DetailComment: React.FC<DetailCommentProps> = ({ playlistId }) => {
 	const [page, setPage] = useRafState(1)
 	const ref = useRef<HTMLDivElement>(null)
 	const [inViewport] = useInViewport(ref)

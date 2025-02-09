@@ -10,7 +10,7 @@ type AlbumDetailCommentProps = {
 	albumId?: number
 }
 
-export const AlbumDetailComment = ({ albumId }: AlbumDetailCommentProps) => {
+export const AlbumDetailComment: React.FC<AlbumDetailCommentProps> = ({ albumId }) => {
 	const [page, setPage] = useRafState(1)
 	const ref = useRef<HTMLDivElement>(null)
 	const [inViewport] = useInViewport(ref)

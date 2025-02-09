@@ -11,7 +11,7 @@ type PlaylistListProps = {
 	loading: boolean
 }
 
-export const PlaylistList = ({ playlists, loading }: PlaylistListProps) => {
+export const PlaylistList: React.FC<PlaylistListProps> = ({ playlists, loading }) => {
 	return (
 		<div className='grid grid-cols-4 xl:grid-cols-6 gap-4'>
 			{loading

@@ -8,7 +8,7 @@ type CommentListProps = {
 	loading: boolean
 }
 
-export const CommentList = ({ comments, loading }: CommentListProps) => {
+export const CommentList: React.FC<CommentListProps> = ({ comments, loading }) => {
 	return (
 		<div className='flex-y-4'>
 			{loading

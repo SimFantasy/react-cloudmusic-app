@@ -10,7 +10,7 @@ type ToplistDetailCardProps = {
 	toplist: TopList
 }
 
-export const ToplistDetailCard = ({ toplist }: ToplistDetailCardProps) => {
+export const ToplistDetailCard: React.FC<ToplistDetailCardProps> = ({ toplist }) => {
 	return (
 		<Link
 			to={`/playlist/${toplist.id}`}

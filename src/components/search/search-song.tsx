@@ -2,6 +2,6 @@ type SearchSongProps = {
 	query: string
 }
 
-export const SearchSong = ({ query }: SearchSongProps) => {
+export const SearchSong: React.FC<SearchSongProps> = ({ query }) => {
 	return <div>SearchSong</div>
 }

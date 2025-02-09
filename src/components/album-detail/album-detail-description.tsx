@@ -4,6 +4,6 @@ type AlbumDetailDescriptionProps = {
 	desc?: string
 }
 
-export const AlbumDetailDescription = ({ desc }: AlbumDetailDescriptionProps) => {
+export const AlbumDetailDescription: React.FC<AlbumDetailDescriptionProps> = ({ desc }) => {
 	return <TextContent content={desc || '暂无描述信息'} />
 }

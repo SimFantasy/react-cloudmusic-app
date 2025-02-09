@@ -2,7 +2,7 @@ import { VolumeX, Volume2 } from 'lucide-react'
 import { Slider } from '@/components/ui/slider'
 import { useAudioPlayer } from '@/store/audio-player'
 
-export const VolumeButton = () => {
+export const VolumeButton: React.FC = () => {
 	const volume = useAudioPlayer(state => state.volume)
 	const setVolume = useAudioPlayer(state => state.setVolume)
 

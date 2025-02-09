@@ -6,7 +6,7 @@ type NewsongCategoriesProps = {
 	setUrlState: (state: React.SetStateAction<{ type?: string }>) => void
 }
 
-export const NewsongCategories = ({ urlState, setUrlState }: NewsongCategoriesProps) => {
+export const NewsongCategories: React.FC<NewsongCategoriesProps> = ({ urlState, setUrlState }) => {
 	return (
 		<div className='flex-x-2'>
 			<button

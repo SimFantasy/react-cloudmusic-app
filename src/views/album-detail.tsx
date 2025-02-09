@@ -7,7 +7,7 @@ import { AlbumDetailComment } from '@/components/album-detail/album-detail-comme
 import { AlbumDetailDescription } from '@/components/album-detail/album-detail-description'
 import { DetailTabs } from '@/components/common/detail-tabs'
 
-const AlbumDetail = () => {
+const AlbumDetail: React.FC = () => {
 	const { albumId } = useParams<{ albumId: string }>()
 	const [currentTab, setCurrentTab] = useState('歌曲')
 

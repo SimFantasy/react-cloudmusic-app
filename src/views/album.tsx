@@ -8,7 +8,7 @@ import { AlbumList } from '@/components/album/album-list'
 import { useAllNewAlbumsInfinite } from '@/service/queries/album'
 import { AlbumCategories } from '@/components/album/album-categories'
 
-const Album = () => {
+const Album: React.FC = () => {
 	const [page, setPage] = useRafState(1)
 	const [urlState, setUrlState] = useUrlState<{ area?: string }>(undefined)
 	const ref = useRef<HTMLDivElement>(null)

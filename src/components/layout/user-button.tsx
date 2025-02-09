@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react'
 import { toast } from 'sonner'
 
@@ -31,7 +32,7 @@ import { useAuthStore } from '@/store/auth'
 import { cookieStorage } from '@/lib/storage'
 import { LogOut } from 'lucide-react'
 
-export const UserButton = () => {
+export const UserButton: React.FC = () => {
 	const [authType, setAuthType] = useState<AuthTypeStatus>(AuthTypeStatus.QRCODE)
 	const [open, setOpen] = useState(false)
 	const { userInfo, isLogin, setUserInfo, setIsLogin } = useAuthStore()

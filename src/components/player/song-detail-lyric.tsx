@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react'
 import { useAudioPlayer } from '@/store/audio-player'
 import { cn } from '@/lib/utils'
 
-export const SongDetailLyric = () => {
+export const SongDetailLyric: React.FC = () => {
 	const { currentTrack, currentTime, currentLyric, currentLyricIndex } = useAudioPlayer()
 	const lyricRef = useRef<HTMLDivElement>(null)
 

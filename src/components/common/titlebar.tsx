@@ -9,7 +9,7 @@ type TitlebarProps = {
 	onClick?: () => void
 }
 
-export const Titlebar = ({ title, link, onClick }: TitlebarProps) => {
+export const Titlebar: React.FC<TitlebarProps> = ({ title, link, onClick }) => {
 	const navigate = useNavigate()
 
 	const handleLink = () => {

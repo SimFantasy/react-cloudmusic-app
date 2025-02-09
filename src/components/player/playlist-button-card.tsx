@@ -9,7 +9,7 @@ type PlaylistButtonCardProps = {
 	index: number
 }
 
-export const PlaylistButtonCard = ({ playlist, index }: PlaylistButtonCardProps) => {
+export const PlaylistButtonCard: React.FC<PlaylistButtonCardProps> = ({ playlist, index }) => {
 	const playTrack = useAudioPlayer(state => state.playTrack)
 	const isPlaying = useAudioPlayer(state => state.isPlaying)
 	const currentTrackIndex = useAudioPlayer(state => state.currentTrackIndex)

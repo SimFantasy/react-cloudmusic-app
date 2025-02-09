@@ -14,13 +14,13 @@ type PlaylistButtonProps = {
 	className?: string
 }
 
-export const PlaylistButton = ({
+export const PlaylistButton: React.FC<PlaylistButtonProps> = ({
 	className,
 	playlistId,
 	type,
 	children,
 	variant
-}: PlaylistButtonProps) => {
+}) => {
 	const setPlaylist = useAudioPlayer(state => state.setPlaylist)
 	const addPlaylist = useAudioPlayer(state => state.addPlaylist)
 

@@ -1,5 +1,3 @@
-import React from 'react'
-
-export const CommentSkeleton = () => {
+export const CommentSkeleton: React.FC = () => {
 	return <div>CommentSkeleton</div>
 }

@@ -14,12 +14,7 @@ import { FormWrapper } from '@/components/auth/auth-form-wrapper'
 
 import { emailSchema, type EmailType } from '@/lib/schemes'
 
-import {
-	fetchEmailLogin,
-	fetchLoginStatus,
-	fetchUserAccount,
-	fetchUserInfo
-} from '@/service/api/auth'
+import { fetchEmailLogin, fetchLoginStatus, fetchUserInfo } from '@/service/api/auth'
 
 import { useAuthStore } from '@/store/auth'
 
@@ -29,10 +24,10 @@ type LoginEmailProps = {
 	setAuthType: (authType: AuthTypeStatus) => void
 }
 
-export const LoginEmail = ({ setOpen, authType, setAuthType }: LoginEmailProps) => {
+export const LoginEmail: React.FC<LoginEmailProps> = ({ setOpen, authType, setAuthType }) => {
 	const [isPending, startTransition] = useTransition()
 
-	const { setUserInfo, setUserAccount, setIsLogin } = useAuthStore()
+	const { setUserInfo, setIsLogin } = useAuthStore()
 
 	const form = useForm<EmailType>({
 		resolver: zodResolver(emailSchema),
@@ -58,10 +53,6 @@ export const LoginEmail = ({ setOpen, authType, setAuthType }: LoginEmailProps) 
 							fetchUserInfo(res.data.account.id).then(res => {
 								console.log('userinfo', res)
 								setUserInfo(res)
-							})
-							fetchUserAccount().then(res => {
-								console.log('account', res)
-								setUserAccount(res)
 							})
 						}
 					})

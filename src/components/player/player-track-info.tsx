@@ -6,7 +6,7 @@ import { ChevronsUpDown } from 'lucide-react'
 import { useAudioPlayer } from '@/store/audio-player'
 import { formatTime } from '@/lib/utils'
 
-export const PlayerTrackInfo = () => {
+export const PlayerTrackInfo: React.FC = () => {
 	const navigate = useNavigate()
 
 	const marqueeContainerRef = useRef<HTMLDivElement>(null)

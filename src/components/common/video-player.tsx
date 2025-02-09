@@ -8,7 +8,7 @@ type VideoPlayerProps = {
 	options?: Partial<Plyr.Options>
 }
 
-export const VideoPlayer = ({ src, options }: VideoPlayerProps) => {
+export const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, options }) => {
 	const playerRef = useRef<HTMLVideoElement>(null)
 
 	useEffect(() => {

@@ -6,7 +6,7 @@ type SubscribeCardProps = {
 	subscribe: PlaylistSubscriber
 }
 
-export const SubscribeCard = ({ subscribe }: SubscribeCardProps) => {
+export const SubscribeCard: React.FC<SubscribeCardProps> = ({ subscribe }) => {
 	return (
 		<div className='group flex-y-2 p-4 w-full text-center bg-card/0 rounded-lg trans-all cursor-pointer hover:bg-blue-500/10'>
 			<div className='w-full'>

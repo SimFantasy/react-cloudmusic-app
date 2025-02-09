@@ -9,7 +9,7 @@ import { DetailTabs } from '@/components/common/detail-tabs'
 
 import { usePlaylistDetail, usePlaylistSongs } from '@/service/queries/playlist'
 
-const PlaylistDetail = () => {
+const PlaylistDetail: React.FC = () => {
 	const { playlistId } = useParams<{ playlistId: string }>()
 	const [currentTab, setCurrentTab] = useState('歌曲')
 	// 歌单详情

@@ -3,7 +3,7 @@ import { PlaySequence } from '@/types/audio-player'
 
 import { useAudioPlayer } from '@/store/audio-player'
 
-export const PlaySequenceButton = () => {
+export const PlaySequenceButton: React.FC = () => {
 	const playSequence = useAudioPlayer(state => state.playSequence)
 	const setPlaySequence = useAudioPlayer(state => state.setPlaySequence)
 

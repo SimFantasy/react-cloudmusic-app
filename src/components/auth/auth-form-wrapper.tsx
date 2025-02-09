@@ -17,7 +17,12 @@ type FormWrapperProps = {
 	children: React.ReactNode
 }
 
-export const FormWrapper = ({ authType, setAuthType, error, children }: FormWrapperProps) => {
+export const FormWrapper: React.FC<FormWrapperProps> = ({
+	authType,
+	setAuthType,
+	error,
+	children
+}) => {
 	return (
 		<div className='grid grid-rows-[auto,1fr] items-center py-10 size-full'>
 			{/* Qrcode link */}

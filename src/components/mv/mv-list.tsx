@@ -9,7 +9,7 @@ type MvListProps = {
 	loading: boolean
 }
 
-export const MvList = ({ mvs, loading }: MvListProps) => {
+export const MvList: React.FC<MvListProps> = ({ mvs, loading }) => {
 	return (
 		<div className='grid grid-cols-2 gap-4 lg:grid-cols-4'>
 			{loading

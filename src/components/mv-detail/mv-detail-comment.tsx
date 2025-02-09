@@ -10,7 +10,7 @@ type MvDetailCommentProps = {
 	mvid?: number
 }
 
-export const MvDetailComment = ({ mvid }: MvDetailCommentProps) => {
+export const MvDetailComment: React.FC<MvDetailCommentProps> = ({ mvid }) => {
 	const [page, setPage] = useRafState(1)
 	const ref = useRef<HTMLDivElement>(null)
 	const [inViewport] = useInViewport(ref)

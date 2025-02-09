@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
 
 import { PlaybackRate } from '@/types/audio-player'
 
-export const PlaybackRateButton = () => {
+export const PlaybackRateButton: React.FC = () => {
 	const playbackRate = useAudioPlayer(state => state.playbackRate)
 	const setPlaybackRate = useAudioPlayer(state => state.setPlaybackRate)
 

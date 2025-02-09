@@ -3,7 +3,7 @@ import { SongDetailLyric } from '@/components/player/song-detail-lyric'
 import { thumbnail } from '@/lib/utils'
 import { useAudioPlayer } from '@/store/audio-player'
 
-const SongDetail = () => {
+const SongDetail: React.FC = () => {
 	const { currentTrack } = useAudioPlayer()
 
 	const coverImage = thumbnail(currentTrack?.al.picUrl || '', 1000)
