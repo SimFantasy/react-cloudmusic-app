@@ -1,8 +1,11 @@
+import React from 'react'
 import { RouterProvider } from 'react-router'
+
 import { Toaster } from '@/components/ui/sonner'
+
 import { router } from '@/router'
 
-const App = () => {
+const App: React.FC = () => {
 	return (
 		<>
 			<RouterProvider router={router} />

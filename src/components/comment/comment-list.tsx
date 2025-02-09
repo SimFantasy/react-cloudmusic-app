@@ -1,7 +1,10 @@
-import { Comment } from '@/types/comment'
+import React from 'react'
+
 import { CommentCard } from '@/components/comment/comment-card'
 import { CommentSkeleton } from '@/components/comment/comment-skeleton'
+
 import { SITE } from '@/config'
+import { Comment } from '@/types/comment'
 
 type CommentListProps = {
 	comments?: Comment[]
@@ -15,7 +18,9 @@ export const CommentList: React.FC<CommentListProps> = ({ comments, loading }) =
 				? Array.from({ length: SITE.ALBUM.COMMENT_LIMIT }).map((_, index) => (
 						<CommentSkeleton key={index} />
 				  ))
-				: comments?.map(comment => <CommentCard key={comment.commentId} comment={comment} />)}
+				: comments?.map((comment, index) => (
+						<CommentCard key={comment.commentId + index} comment={comment} />
+				  ))}
 		</div>
 	)
 }

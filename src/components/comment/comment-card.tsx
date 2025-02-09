@@ -1,7 +1,10 @@
-import { Comment } from '@/types/comment'
-import { UserAvatar } from '@/components/common/user-avatar'
-import { formatDate } from '@/lib/utils'
+import React from 'react'
 import { MessageCircleMore, MessageSquareShare, ThumbsUp } from 'lucide-react'
+
+import { UserAvatar } from '@/components/common/user-avatar'
+
+import { formatDate } from '@/lib/utils'
+import { Comment } from '@/types/comment'
 
 type CommentCardProps = {
 	comment: Comment

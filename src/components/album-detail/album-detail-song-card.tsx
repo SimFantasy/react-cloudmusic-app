@@ -1,6 +1,8 @@
+import React from 'react'
+import { CirclePlay, ListPlus } from 'lucide-react'
+
 import { cn, formatDuration } from '@/lib/utils'
 import { Song } from '@/types/playlist'
-import { CirclePlay, ListPlus } from 'lucide-react'
 
 type AlbumDetailSongCardProps = {
 	song: Song

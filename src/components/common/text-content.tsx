@@ -1,3 +1,4 @@
+import React from 'react'
 import { convertTextToHtml } from '@/lib/utils'
 
 type TextContentProps = {

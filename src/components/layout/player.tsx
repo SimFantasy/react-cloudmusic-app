@@ -1,18 +1,18 @@
-import { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import Plyr from 'plyr'
 import { Pause, Play, SkipBack, SkipForward } from 'lucide-react'
 
 import { Slider } from '@/components/ui/slider'
 import { PlaylistButton } from '@/components/player/playlist-button'
 
+import { PlayerTrackInfo } from '@/components/player/player-track-info'
+import { VolumeButton } from '@/components/player/volume-button'
+import { PlaySequenceButton } from '@/components/player/play-sequence-button'
+import { PlaybackRateButton } from '@/components/player/playback-rate-button'
+import { SongLevelButton } from '@/components/player/song-level-button'
+
 import { useAudioPlayer } from '@/store/audio-player'
 import { cn } from '@/lib/utils'
-
-import { PlayerTrackInfo } from '../player/player-track-info'
-import { VolumeButton } from '../player/volume-button'
-import { PlaySequenceButton } from '../player/play-sequence-button'
-import { PlaybackRateButton } from '../player/playback-rate-button'
-import { SongLevelButton } from '../player/song-level-button'
 
 export const Player: React.FC = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null)

@@ -46,7 +46,7 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 				isShowPlayer: true as boolean,
 
 				error: null as PlayerError | null,
-				_plyr: null,
+				_plyr: null as Plyr | null,
 
 				// 初始化播放器
 				init: (player: Plyr) => {
@@ -194,7 +194,7 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 					await _plyr?.play()
 				},
 
-				// 添加曲目
+				// 添加并播放曲目
 				addTrack: (track: Track) => {
 					const { playlist } = get()
 					const existingIndex = playlist.findIndex(t => t.id === track.id)
@@ -205,6 +205,46 @@ export const useAudioPlayer = createWithEqualityFn<AudioPlayerState>()(
 						const newPlaylist = [...playlist, track]
 						set({ playlist: newPlaylist })
 						get().playTrack(newPlaylist.length - 1)
+					}
+				},
+
+				/**
+				 * 添加曲目到播放列表
+				 * 1. 如果播放列表为空，则直接插入播放列表
+				 * 2. 如果播放列表不为空，则判断播放列表中是否有该歌曲
+				 * 3. 有则该歌曲，则根据pos参数是否为next，是则移动该歌曲到当前索引之后，否则插入到末尾
+				 * 4. 如果没有，则根据pos参数是否为next，是则插入到当前索引之后，否则插入到末尾
+				 */
+				addTrackToPlaylist: (track: Track, pos: 'next' | 'end' = 'next') => {
+					const { playlist, currentTrackIndex } = get()
+
+					if (playlist.length === 0) {
+						set({ playlist: [track], currentTrack: track, currentTrackIndex: 0 })
+						return
+					}
+					// 判断是否有该歌曲
+					const existingIndex = playlist.findIndex(t => t.id === track.id)
+					// 有则根据pos参数是否为next，是则移动该歌曲到当前索引之后，否则插入到末尾
+					if (existingIndex >= 0) {
+						if (pos === 'next') {
+							const newPlaylist = [...playlist]
+							newPlaylist.splice(currentTrackIndex + 1, 0, newPlaylist.splice(existingIndex, 1)[0])
+							set({ playlist: newPlaylist })
+						} else {
+							const newPlaylist = [...playlist]
+							newPlaylist.splice(playlist.length, 0, newPlaylist.splice(existingIndex, 1)[0])
+							set({ playlist: newPlaylist })
+						}
+					} else {
+						// 没有则根据pos参数是否为next，是则插入到当前索引之后，否则插入到末尾
+						if (pos === 'next') {
+							const newPlaylist = [...playlist]
+							newPlaylist.splice(currentTrackIndex + 1, 0, track)
+							set({ playlist: newPlaylist })
+						} else {
+							const newPlaylist = [...playlist, track]
+							set({ playlist: newPlaylist })
+						}
 					}
 				},
 

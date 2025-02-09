@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useTransition } from 'react'
+import React, { useState, useTransition } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -11,6 +11,14 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { FormWrapper } from '@/components/auth/auth-form-wrapper'
 import { CountDown } from '@/components/common/count-down'
+import {
+	fetchPhoneLogin,
+	fetchVerifyCaptcha,
+	fetchSendCaptcha,
+	fetchUserInfo,
+	fetchLoginStatus
+} from '@/service/api/auth'
+import { useAuthStore } from '@/store/auth'
 
 import {
 	phonePasswordSchema,
@@ -19,17 +27,6 @@ import {
 	type PhoneSmsType
 } from '@/lib/schemes'
 import { AuthTypeStatus } from '@/types/auth'
-// import { cookieStorage } from '@/lib/storage'
-
-import {
-	fetchPhoneLogin,
-	fetchVerifyCaptcha,
-	fetchSendCaptcha,
-	fetchUserInfo,
-	fetchLoginStatus
-} from '@/service/api/auth'
-
-import { useAuthStore } from '@/store/auth'
 
 type LoginPhoneProps = {
 	setOpen: (open: boolean) => void

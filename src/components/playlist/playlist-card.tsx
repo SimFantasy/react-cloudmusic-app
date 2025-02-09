@@ -1,10 +1,10 @@
+import React from 'react'
 import { Link } from 'react-router'
 import { Headphones, Play } from 'lucide-react'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 
 import { formatCount, thumbnail } from '@/lib/utils'
-
 import { PlaylistResult } from '@/types/discover'
 import { PlaylistDetail } from '@/types/playlist'
 

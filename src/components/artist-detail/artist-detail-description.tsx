@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { useArtistDesc } from '@/service/queries/artist'
 import { TextContent } from '@/components/common/text-content'
 
@@ -6,7 +8,10 @@ type ArtistDetailDescriptionProps = {
 	artistName?: string
 }
 
-export const ArtistDetailDescription = ({ artistId, artistName }: ArtistDetailDescriptionProps) => {
+export const ArtistDetailDescription: React.FC<ArtistDetailDescriptionProps> = ({
+	artistId,
+	artistName
+}) => {
 	const { data } = useArtistDesc({ id: Number(artistId) })
 	return (
 		<div className='flex-y-4'>

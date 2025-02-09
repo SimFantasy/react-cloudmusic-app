@@ -1,7 +1,10 @@
+import React from 'react'
+
 import { SongDetailDisc } from '@/components/player/song-detail-disc'
 import { SongDetailLyric } from '@/components/player/song-detail-lyric'
-import { thumbnail } from '@/lib/utils'
+
 import { useAudioPlayer } from '@/store/audio-player'
+import { thumbnail } from '@/lib/utils'
 
 const SongDetail: React.FC = () => {
 	const { currentTrack } = useAudioPlayer()

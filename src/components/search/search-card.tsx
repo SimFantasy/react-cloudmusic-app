@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router'
 import { Play } from 'lucide-react'
 
@@ -29,7 +30,7 @@ export const SearchCard: React.FC<SearcCardProps> = ({
 			) : (
 				<Link
 					to={link}
-					className='group grid grid-cols-[auto,1fr] items-center gap-x-4 p-4  bg-transparent rounded-lg trans-all hover:bg-blue-100'
+					className='group grid grid-cols-[auto,1fr] items-center gap-x-4 p-4  bg-transparent rounded-lg trans-all hover:bg-blue-500/10'
 				>
 					<section
 						className={cn('relative size-16 border border-border overflow-hidden', {
@@ -44,10 +45,15 @@ export const SearchCard: React.FC<SearcCardProps> = ({
 					</section>
 
 					<section className='grid grid-rows-[auto,1fr] gap-y-2'>
-						<h2 className='text-lg font-semibold text-primary/80'>{title}</h2>
+						<h2 className='text-lg font-semibold text-primary/80 trans-colors group-hover:text-blue-500'>
+							{title}
+						</h2>
 						<div className='flex-x-4'>
 							{info.map((item, index) => (
-								<span key={index} className='text-sm text-primary/40'>
+								<span
+									key={index}
+									className='text-sm text-primary/40 trans-colors group-hover:text-blue-500/50'
+								>
 									{item}
 								</span>
 							))}

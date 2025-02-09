@@ -1,13 +1,14 @@
+import React from 'react'
 import { useParams } from 'react-router'
 import { FolderPlus, SquareArrowOutUpRight, ThumbsUp } from 'lucide-react'
 
+import { Separator } from '@/components/ui/separator'
 import { MvPlayer } from '@/components/mv-detail/mv-player'
 import { UserAvatar } from '@/components/common/user-avatar'
 import { MvDetailComment } from '@/components/mv-detail/mv-detail-comment'
 
 import { useMvDetail, useMvDynamic } from '@/service/queries/mv'
 import { formatDate, thumbnail } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
 
 const MvDetail: React.FC = () => {
 	const { mvId } = useParams<{ mvId: string }>()

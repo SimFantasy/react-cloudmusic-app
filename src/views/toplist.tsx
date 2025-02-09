@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Titlebar } from '@/components/common/titlebar'
 import { ToplistDetailList } from '@/components/toplist/toplist-detail-list'
 import { ToplistList } from '@/components/toplist/toplist-list'

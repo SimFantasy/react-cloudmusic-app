@@ -1,4 +1,6 @@
+import React from 'react'
 import { Check, Gauge } from 'lucide-react'
+
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -9,7 +11,6 @@ import {
 
 import { useAudioPlayer } from '@/store/audio-player'
 import { cn } from '@/lib/utils'
-
 import { PlaybackRate } from '@/types/audio-player'
 
 export const PlaybackRateButton: React.FC = () => {

@@ -1,6 +1,8 @@
+import React from 'react'
+import { NavLink } from 'react-router'
+
 import { NAVS } from '@/config'
 import { cn } from '@/lib/utils'
-import { NavLink } from 'react-router'
 
 export const Navbar: React.FC = () => {
 	return (

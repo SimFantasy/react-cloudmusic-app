@@ -1,3 +1,4 @@
+import React from 'react'
 import { AudioLines, Check } from 'lucide-react'
 
 import {
@@ -10,7 +11,6 @@ import {
 
 import { useAudioPlayer } from '@/store/audio-player'
 import { cn } from '@/lib/utils'
-
 import { SongLevel } from '@/types/audio-player'
 
 export const SongLevelButton: React.FC = () => {

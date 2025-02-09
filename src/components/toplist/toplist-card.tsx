@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router'
 import { Play } from 'lucide-react'
 
@@ -8,7 +9,7 @@ import { TopList } from '@/types/toplist'
 
 type ToplistCardProps = {
 	toplist: TopList
-	p?: 0 | 1 | 2 | 3
+	p?: 0 | 1 | 2 | 3 // 文字垂直位置，0：隐藏， 1-3：数字越大，文字越靠下
 }
 export const ToplistCard: React.FC<ToplistCardProps> = ({ toplist, p = 1 }) => {
 	return (

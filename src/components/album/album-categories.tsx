@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { cn, sortLettersArray } from '@/lib/utils'
 import { NEWALBUM_AREA } from '@/config'
 

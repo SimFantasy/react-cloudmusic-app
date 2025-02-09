@@ -1,11 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { toast } from 'sonner'
-
 import { ChevronRight } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-
-import { cookieStorage } from '@/lib/storage'
 
 import {
 	fetchQrcodeKey,
@@ -14,11 +11,11 @@ import {
 	fetchLoginStatus,
 	fetchUserInfo
 } from '@/service/api/auth'
+import { cookieStorage } from '@/lib/storage'
 import { cn } from '@/lib/utils'
+import { useAuthStore } from '@/store/auth'
 
 import { AuthTypeStatus, QRCodeStatus } from '@/types/auth'
-
-import { useAuthStore } from '@/store/auth'
 
 type LoginQrcodeProps = {
 	setOpen: (open: boolean) => void

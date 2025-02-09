@@ -1,3 +1,4 @@
+import React from 'react'
 import useUrlState from '@ahooksjs/use-url-state'
 
 import { Loader } from '@/components/common/loader'

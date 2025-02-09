@@ -1,3 +1,4 @@
+import React from 'react'
 import { CirclePlay, Music2 } from 'lucide-react'
 
 import { useAudioPlayer } from '@/store/audio-player'
@@ -23,9 +24,9 @@ export const PlaylistButtonCard: React.FC<PlaylistButtonCardProps> = ({ playlist
 	return (
 		<section
 			className={cn(
-				'group grid grid-cols-[auto,1fr,3rem] gap-x-2 items-center p-2 text-sm text-primary/50 bg-blue-500/0 rounded-lg trans-all hover:bg-blue-100',
+				'group grid grid-cols-[auto,1fr,3rem] gap-x-2 items-center p-2 text-sm text-primary/50 bg-blue-500/0 rounded-lg trans-all hover:bg-blue-500/10',
 				{
-					'bg-blue-100': currentTrackIndex === index
+					'bg-blue-500/10': currentTrackIndex === index
 				}
 			)}
 		>
@@ -52,21 +53,21 @@ export const PlaylistButtonCard: React.FC<PlaylistButtonCardProps> = ({ playlist
 
 			<div className='flex-y-1'>
 				<h2 className='text-primary/80 font-medium line-clamp-1'>{playlist.name}</h2>
-				<div className='text-xs text-primary/50'>{playlist.ar.map(a => a.name).join(' / ')}</div>
+				<div className='w-full text-xs text-primary/50 line-clamp-1 truncate'>
+					{playlist.ar.map(a => a.name).join(' / ')}
+					{' - '}
+					{formatDuration(playlist.dt)}
+				</div>
 			</div>
 
 			<div className='flex-end'>
 				<button
 					onClick={handlePlayTrack}
 					disabled={currentTrackIndex === index}
-					className='flex-center size-10 text-primary/50 cursor-pointer trans-all opacity-0 translate-x-4 group-hover:translate-x-0 group-hover:opacity-100 hover:text-blue-500 disabled:text-primary/20'
+					className='flex-center size-10 text-primary/50 cursor-pointer trans-all opacity-0 -translate-x-4 group-hover:translate-x-0 group-hover:opacity-100 hover:text-blue-500 disabled:text-primary/20'
 				>
 					<CirclePlay className='size-5' />
 				</button>
-
-				<span className='trans-all opacity-100 translate-x-0 group-hover:translate-x-4 group-hover:opacity-0'>
-					{formatDuration(playlist.dt)}
-				</span>
 			</div>
 		</section>
 	)

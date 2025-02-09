@@ -1,3 +1,4 @@
+import React from 'react'
 import { ListPlus, Play } from 'lucide-react'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
@@ -5,15 +6,17 @@ import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Skeleton } from '@/components/ui/skeleton'
 import { UserAvatar } from '@/components/common/user-avatar'
 import { PlaylistButton } from '@/components/common/playlist-button'
+
 import { formatDate, thumbnail } from '@/lib/utils'
-import { PlaylistDetail } from '@/types/playlist'
+import { PlaylistDetail, Track } from '@/types/playlist'
 
 type DetailTopbarProps = {
 	detail?: PlaylistDetail
 	loading: boolean
+	tracks?: Track[]
 }
 
-export const DetailTopbar: React.FC<DetailTopbarProps> = ({ detail, loading }) => {
+export const DetailTopbar: React.FC<DetailTopbarProps> = ({ detail, loading, tracks }) => {
 	return (
 		<>
 			{loading ? (
@@ -80,11 +83,7 @@ export const DetailTopbar: React.FC<DetailTopbarProps> = ({ detail, loading }) =
 						</div>
 
 						<div className='flex-x-4'>
-							<PlaylistButton
-								className='play-all-button'
-								type='set'
-								playlistId={detail?.id.toString()}
-							>
+							<PlaylistButton className='play-all-button' type='set' tracks={tracks}>
 								<Play className='size-5 fill-white stroke-white' />
 								<span>播放全部</span>
 							</PlaylistButton>
@@ -93,7 +92,7 @@ export const DetailTopbar: React.FC<DetailTopbarProps> = ({ detail, loading }) =
 								variant='outline'
 								className='button-free px-4 py-2 text-primary/50'
 								type='add'
-								playlistId={detail?.id.toString()}
+								tracks={tracks}
 							>
 								<ListPlus className='size-5' />
 								<span>全部添加到播放列表</span>

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Skeleton } from '@/components/ui/skeleton'
 import { AspectRatio } from '@/components//ui/aspect-ratio'
 

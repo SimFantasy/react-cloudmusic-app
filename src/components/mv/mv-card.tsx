@@ -1,5 +1,6 @@
-import { CirclePlay, Play } from 'lucide-react'
+import React from 'react'
 import { Link } from 'react-router'
+import { CirclePlay, Play } from 'lucide-react'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 

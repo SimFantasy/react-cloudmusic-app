@@ -1,5 +1,7 @@
+import React from 'react'
 import { Link } from 'react-router'
 import { Disc3 } from 'lucide-react'
+
 import { SITE, ROUTES } from '@/config'
 import { cn } from '@/lib/utils'
 

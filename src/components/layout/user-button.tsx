@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { LogOut } from 'lucide-react'
 import { toast } from 'sonner'
 
-import { UserAvatar } from '@/components/common/user-avatar'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import {
 	Dialog,
@@ -21,16 +21,15 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
+import { UserAvatar } from '@/components/common/user-avatar'
 import { LoginQrcode } from '@/components/auth/login-qrcode'
 import { LoginPhone } from '@/components/auth/login-phone'
 import { LoginEmail } from '@/components/auth/login-email'
 
-import { AuthTypeStatus } from '@/types/auth'
 import { fetchLogout } from '@/service/api/auth'
-
 import { useAuthStore } from '@/store/auth'
 import { cookieStorage } from '@/lib/storage'
-import { LogOut } from 'lucide-react'
+import { AuthTypeStatus } from '@/types/auth'
 
 export const UserButton: React.FC = () => {
 	const [authType, setAuthType] = useState<AuthTypeStatus>(AuthTypeStatus.QRCODE)

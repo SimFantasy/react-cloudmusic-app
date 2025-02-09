@@ -1,5 +1,7 @@
-import { useEffect, Suspense, type LazyExoticComponent } from 'react'
+import React, { useEffect, Suspense, type LazyExoticComponent } from 'react'
+
 import { Loader } from '@/components/common/loader'
+
 import { SITE } from '@/config'
 
 type LazyComponentProps = {

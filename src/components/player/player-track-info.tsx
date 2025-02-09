@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import Marquee from 'react-fast-marquee'
 import { ChevronsUpDown } from 'lucide-react'
@@ -52,7 +52,7 @@ export const PlayerTrackInfo: React.FC = () => {
 				</Marquee>
 				<div className='flex-x-4 text-xs text-primary/50'>
 					<span className='flex-x-2 max-w-56 line-clamp-1 truncate'>
-						{currentTrack?.ar.map(a => a.name).join(' / ')}
+						{currentTrack?.ar?.map(a => a.name).join(' / ')}
 					</span>
 					<span>
 						{formatTime(currentTime)} / {formatTime(duration)}

@@ -1,8 +1,9 @@
+import React from 'react'
+
 import { PlaylistCard } from '@/components/playlist/playlist-card'
 import { PlaylistSkeleton } from '@/components/playlist/playlist-skeleton'
 
 import { SITE } from '@/config'
-
 import { PlaylistResult } from '@/types/discover'
 import { PlaylistDetail } from '@/types/playlist'
 

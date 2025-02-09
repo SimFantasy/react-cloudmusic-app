@@ -1,7 +1,6 @@
 import { Album, Artist } from '@/types/artist'
-import { NewSong } from '@/types/discover'
 import { MvData } from '@/types/mv'
-import { Playlist, PlaylistDetail, Song } from '@/types/playlist'
+import { PlaylistDetail, Song } from '@/types/playlist'
 import { Album as AlbumType } from '@/types/album'
 
 /**
@@ -70,7 +69,7 @@ export interface SearchSongResponse {
 }
 
 export interface SearchSongResult {
-	songs: NewSong[]
+	songs: Song[]
 	hasMore: boolean
 	songCount: number
 }
@@ -114,14 +113,14 @@ export interface SearchPlaylistResponse {
 }
 
 export interface SearchPlaylistResult {
-	playlists: Playlist[]
+	playlists: SearchPlaylist[]
 	hasMore: boolean
 	hlWords: string[]
 	playlistCount: number
 	searchQcReminder: string
 }
 
-export interface SearchPlaylist extends Playlist {
+export interface SearchPlaylist extends PlaylistDetail {
 	action: string
 	actionType: string
 	alg: string

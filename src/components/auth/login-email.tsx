@@ -1,6 +1,4 @@
-import { AuthTypeStatus } from '@/types/auth'
-
-import { useTransition } from 'react'
+import React, { useTransition } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -9,14 +7,12 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-
 import { FormWrapper } from '@/components/auth/auth-form-wrapper'
 
-import { emailSchema, type EmailType } from '@/lib/schemes'
-
 import { fetchEmailLogin, fetchLoginStatus, fetchUserInfo } from '@/service/api/auth'
-
+import { emailSchema, type EmailType } from '@/lib/schemes'
 import { useAuthStore } from '@/store/auth'
+import { AuthTypeStatus } from '@/types/auth'
 
 type LoginEmailProps = {
 	setOpen: (open: boolean) => void

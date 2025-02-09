@@ -1,7 +1,10 @@
+import React from 'react'
+
+import { useAudioPlayer } from '@/store/audio-player'
+import { cn, thumbnail } from '@/lib/utils'
+
 import discImage from '@/assets/images/disc.png'
 import cursorImage from '@/assets/images/disc-cursor.png'
-import { cn, thumbnail } from '@/lib/utils'
-import { useAudioPlayer } from '@/store/audio-player'
 
 export const SongDetailDisc: React.FC = () => {
 	const { currentTrack, isPlaying } = useAudioPlayer()

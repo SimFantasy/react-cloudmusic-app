@@ -1,6 +1,9 @@
-import { TopList } from '@/types/toplist'
+import React from 'react'
+
 import { ToplistDetailCard } from '@/components/toplist/toplist-detail-card'
 import { ToplistDetailSkeleton } from '@/components/toplist/toplist-detail-skeleton'
+
+import { TopList } from '@/types/toplist'
 
 type ToplistDetailListProps = {
 	toplists?: TopList[]

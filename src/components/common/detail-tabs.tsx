@@ -1,7 +1,10 @@
+import React from 'react'
 import { cn } from '@/lib/utils'
 
+type TabTpye = { name: string; count?: number }
+
 type DetailTabsProps = {
-	tabs: { name: string; count?: number }[]
+	tabs: TabTpye[]
 	currentTab: string
 	setCurrentTab: (tab: string) => void
 }
@@ -27,7 +30,7 @@ export const DetailTabs: React.FC<DetailTabsProps> = ({ tabs, currentTab, setCur
 					>
 						{tab.name}
 					</h1>
-					{tab.count && <span className='text-xs'>{tab.count}</span>}
+					{tab.count && tab.count > 0 && <span className='text-xs'>{tab.count}</span>}
 				</div>
 			))}
 		</div>

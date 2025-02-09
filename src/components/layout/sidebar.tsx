@@ -1,5 +1,7 @@
-import { Logo } from '../common/logo'
-import { Navbar } from './navbar'
+import React from 'react'
+
+import { Logo } from '@/components/common/logo'
+import { Navbar } from '@/components/layout/navbar'
 
 export const Sidebar: React.FC = () => {
 	return (

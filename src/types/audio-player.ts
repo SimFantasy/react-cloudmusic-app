@@ -91,10 +91,12 @@ export interface AudioPlayerState {
 	pause: () => void // 暂停
 	toggle: () => Promise<void>
 
-	changeTrack: (type: ChangeTrackType) => void // 切换歌曲
+	changeTrack: (type: ChangeTrackType) => Promise<void> // 切换歌曲
 	addTrack: (track: Track) => void // 添加新曲目
+	addTrackToPlaylist: (track: Track, pos: 'next' | 'end') => void // 添加曲目到播放列表
 	playTrack: (index: number) => Promise<void> // 播放指定曲目
 	removeTrack: (trackId: string) => void // 移除曲目
+
 	setPlaylist: (tracks: Track[]) => Promise<void> // 设置播放列表
 	addPlaylist: (tracks: Track[], pos: 'next' | 'end') => void // 添加播放列表
 

@@ -1,6 +1,7 @@
-import { useDeferredValue, useState, useEffect } from 'react'
+import React, { useDeferredValue, useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
 import { CircleX, Search } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
 
 export const Searchbar: React.FC = () => {
@@ -28,7 +29,7 @@ export const Searchbar: React.FC = () => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className='group flex-x-1 w-80 h-9 border border-border bg-blue-500/0 rounded-md trans-colors hover:border-blue-200 hover:bg-blue-500/10'
+			className='group flex-x-1 w-80 h-9 border border-border bg-blue-500/0 rounded-md trans-colors hover:border-blue-200 hover:bg-blue-500/10 dark:hover:border-blue-500/20'
 		>
 			<button
 				type='button'

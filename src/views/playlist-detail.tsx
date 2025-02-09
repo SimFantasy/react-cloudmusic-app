@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router'
 
 import { DetailTopbar } from '@/components/playlist-detail/detail-topbar'
@@ -32,7 +32,7 @@ const PlaylistDetail: React.FC = () => {
 	return (
 		<div className='page-wrapper page-content'>
 			<div className='page-block'>
-				<DetailTopbar detail={playlistDetail} loading={loadingDetail} />
+				<DetailTopbar detail={playlistDetail} loading={loadingDetail} tracks={playlistSongs} />
 				<DetailTabs currentTab={currentTab} setCurrentTab={setCurrentTab} tabs={tabs} />
 
 				{currentTab === '歌曲' && <DetailSongList songs={playlistSongs} loading={loadingSongs} />}

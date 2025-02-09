@@ -1,6 +1,9 @@
-import { PlaylistSubscriber } from '@/types/playlist'
+import React from 'react'
+
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+
 import { thumbnail } from '@/lib/utils'
+import { PlaylistSubscriber } from '@/types/playlist'
 
 type SubscribeCardProps = {
 	subscribe: PlaylistSubscriber

@@ -1,6 +1,9 @@
-import { Song } from '@/types/playlist'
+import React from 'react'
+
 import { AlbumDetailSongCard } from '@/components/album-detail/album-detail-song-card'
 import { AlbumDetailSongSkeleton } from '@/components/album-detail/album-detail-song-skeleton'
+
+import { Song } from '@/types/playlist'
 import { SITE } from '@/config'
 
 type AlbumDetailSongListProps = {

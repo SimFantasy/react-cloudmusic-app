@@ -141,7 +141,7 @@
 
   /* Detail */
   .play-all-button {
-    @apply button-free px-4 py-2 bg-transparent bg-gradient-to-r from-sky-500/90 to-blue-500/90;
+    @apply button-free px-4 py-2 bg-transparent bg-gradient-to-r from-sky-500/90 to-blue-500/90 !text-white;
   }
 
 
@@ -156,14 +156,14 @@
 
   /* Playlist & artist Categories */
   .category-link {
-    @apply px-4 py-1.5 border border-border bg-transparent rounded-lg text-sm text-primary/50 trans-colors hover:border-blue-200 hover:bg-blue-100 hover:text-blue-500;
+    @apply px-4 py-1.5 border border-border bg-transparent rounded-lg text-sm text-primary/50 trans-colors hover:border-blue-500/20 hover:bg-blue-500/10 hover:text-blue-500;
 
     &.sm {
       @apply px-2.5 py-1;
     }
 
     &.active {
-      @apply border-blue-200 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 text-blue-500 hover:from-blue-500/30 hover:to-purple-500/30 hover:border-blue-300 hover:text-blue-600;
+      @apply border-blue-500/30 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 text-blue-500 hover:from-blue-500/30 hover:to-purple-500/30 hover:border-blue-300 hover:text-blue-600;
     }
   }
 
@@ -222,15 +222,15 @@
 
   /* Auth form */
   .auth-input {
-    @apply !h-10 !rounded-3xl !border-border !shadow-none !bg-primary/5 focus-visible:!ring-blue-300 focus-visible:!bg-blue-50 placeholder:!text-primary/40;
+    @apply !h-10 !rounded-3xl !border-border !shadow-none !bg-primary/5 focus-visible:!ring-blue-500/30 focus-visible:!bg-blue-500/20 placeholder:!text-primary/40;
   }
 
   .auth-button {
-    @apply w-full !rounded-3xl bg-gradient-to-r from-sky-400 to-blue-500 !shadow-none !font-medium;
+    @apply w-full !rounded-3xl bg-gradient-to-r from-sky-400 to-blue-500 !shadow-none !font-medium !text-white;
   }
 
   .auth-social-button {
-    @apply !px-2.5 !size-10 !rounded-full text-primary/50 !bg-primary/5 hover:!bg-blue-100 hover:border-blue-300 hover:!text-blue-500;
+    @apply !px-2.5 !size-10 !rounded-full text-primary/50 !bg-primary/5 hover:!bg-blue-500/20 hover:border-blue-500/30 hover:!text-blue-500;
 
     > svg {
       @apply !size-5;
@@ -250,7 +250,7 @@
     @apply w-auto h-auto;
   }
   .button-primary {
-    @apply h-9 text-primary/50 [&_svg]:!size-5 [&_svg]:text-primary/40 hover:border-blue-200 hover:text-blue-500 hover:!bg-blue-50 [&_svg]:hover:text-blue-500 dark:hover:!bg-blue-950;
+    @apply h-9 text-primary/50 [&_svg]:!size-5 [&_svg]:text-primary/40 hover:border-blue-200 hover:text-blue-500 hover:!bg-blue-50 [&_svg]:hover:text-blue-500 dark:hover:!bg-blue-950 dark:hover:border-border;
   }
 
   /* Transition */

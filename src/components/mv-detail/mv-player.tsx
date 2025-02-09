@@ -1,6 +1,9 @@
-import { useMvUrl } from '@/service/queries/mv'
+import React from 'react'
+
 import { VideoPlayer } from '@/components/common/video-player'
 import { Skeleton } from '@/components/ui/skeleton'
+
+import { useMvUrl } from '@/service/queries/mv'
 
 type MvPlayerProps = {
 	mvid: number

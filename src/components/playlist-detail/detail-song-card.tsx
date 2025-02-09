@@ -1,19 +1,32 @@
-import { CirclePlay, ListPlus, Play } from 'lucide-react'
+import React from 'react'
+import { Play } from 'lucide-react'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { TrackAddButton } from '@/components/common/track-add-button'
+import { TrackPlayButton } from '@/components/common/track-play-button'
+
 import { cn, formatDuration, thumbnail } from '@/lib/utils'
+import { formatDaumToTrack, formatNewSongToTrack } from '@/lib/format-data'
 import { Track } from '@/types/playlist'
 import { Daum } from '@/types/newsong'
+import { NewSong } from '@/types/discover'
 
 type DetailSongCardProps = {
-	song: Track | Daum
+	song: Track | Daum | NewSong
 	index: number
 }
 
 export const DetailSongCard: React.FC<DetailSongCardProps> = ({ song, index }) => {
-	const songPic = (song as Track)?.al?.picUrl || (song as Daum)?.album?.picUrl
+	const songPic =
+		(song as Track)?.al?.picUrl || (song as Daum)?.album?.picUrl || (song as NewSong).album.picUrl
 	const songName = (song as Track)?.name || (song as Daum)?.name
 	const trackName = (song as Track)?.al?.name || (song as Daum)?.album?.name
+
+	const daum = formatDaumToTrack(song as Daum)
+	const newsong = formatNewSongToTrack(song as NewSong)
+
+	const track = (song as Track) || (daum as Track) || (newsong as Track)
+
 	return (
 		<section
 			className={cn(
@@ -42,13 +55,8 @@ export const DetailSongCard: React.FC<DetailSongCardProps> = ({ song, index }) =
 			<div className='text-primary/60 truncate line-clamp-1'>{trackName}</div>
 			<div>{formatDuration((song as Track).dt || (song as Daum).duration)}</div>
 			<div className='flex-end gap-x-2'>
-				<button className='p-2 text-primary/50 hover:text-blue-500 trans-all opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0'>
-					<ListPlus className='size-5' />
-				</button>
-
-				<button className='p-2 text-primary/50 hover:text-blue-500 trans-all opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0'>
-					<CirclePlay className='size-5' />
-				</button>
+				<TrackAddButton track={track} pos='end' />
+				<TrackPlayButton track={track} />
 			</div>
 		</section>
 	)

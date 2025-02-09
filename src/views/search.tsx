@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useSearchParams } from 'react-router'
 
 import { SearchComplex } from '@/components/search/search-complex'

@@ -1,3 +1,7 @@
+import React from 'react'
+import { ListMusic, Trash2 } from 'lucide-react'
+
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import {
 	Sheet,
 	SheetContent,
@@ -6,13 +10,10 @@ import {
 	SheetTitle,
 	SheetTrigger
 } from '@/components/ui/sheet'
-import { ListMusic, Trash2 } from 'lucide-react'
-
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { PlaylistButtonList } from '@/components/player/playlist-button-list'
 
 import { useAudioPlayer } from '@/store/audio-player'
-import { PlaylistButtonList } from './playlist-button-list'
 
 export const PlaylistButton: React.FC = () => {
 	const playlist = useAudioPlayer(state => state.playlist)

@@ -1,9 +1,13 @@
+import React from 'react'
+import { ListPlus, Play } from 'lucide-react'
+
+import { AspectRatio } from '@radix-ui/react-aspect-ratio'
+import { UserAvatar } from '@/components/common/user-avatar'
+import { PlaylistButton } from '@/components/common/playlist-button'
+
 import { formatDate, thumbnail } from '@/lib/utils'
 import { AlbumDetail } from '@/types/album'
-import { AspectRatio } from '@radix-ui/react-aspect-ratio'
-import { UserAvatar } from '../common/user-avatar'
-import { Button } from '../ui/button'
-import { ListPlus, Play } from 'lucide-react'
+import { Track } from '@/types/playlist'
 
 type AlbumDetailTopbarProps = {
 	detail?: AlbumDetail
@@ -11,6 +15,11 @@ type AlbumDetailTopbarProps = {
 }
 
 export const AlbumDetailTopbar: React.FC<AlbumDetailTopbarProps> = ({ detail, loading }) => {
+	console.log('detail', detail)
+	const songs = detail?.songs.map(song => ({
+		...song,
+		al: { picUrl: detail?.album.picUrl }
+	})) as Track[]
 	return (
 		<>
 			{loading ? (
@@ -53,15 +62,20 @@ export const AlbumDetailTopbar: React.FC<AlbumDetailTopbarProps> = ({ detail, lo
 							</div>
 
 							<div className='flex-x-4'>
-								<Button className='play-all-button'>
+								<PlaylistButton className='play-all-button' type='set' tracks={songs}>
 									<Play className='size-5 fill-white stroke-white' />
 									<span>播放全部</span>
-								</Button>
+								</PlaylistButton>
 
-								<Button variant='outline' className='button-free px-4 py-2 text-primary/50'>
+								<PlaylistButton
+									variant='outline'
+									className='button-free px-4 py-2 text-primary/50'
+									type='add'
+									tracks={songs}
+								>
 									<ListPlus className='size-5' />
 									<span>全部添加到播放列表</span>
-								</Button>
+								</PlaylistButton>
 							</div>
 						</section>
 					</div>

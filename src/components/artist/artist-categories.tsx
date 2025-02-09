@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { ARTIST_CATEGORY } from '@/config'
 import { cn, sortNumberArray, sortLettersArray } from '@/lib/utils'
 import type { ArtistCategory } from '@/types/artist'

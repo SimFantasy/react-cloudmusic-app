@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 
 import { useAudioPlayer } from '@/store/audio-player'
 import { cn } from '@/lib/utils'

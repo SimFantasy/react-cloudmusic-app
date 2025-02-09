@@ -1,8 +1,11 @@
+import React from 'react'
+
 import { Titlebar } from '@/components/common/titlebar'
-import { ROUTES } from '@/config'
-import { useDiscoverPlaylist, useDiscoverNewSong } from '@/service/queries/discover'
 import { PlaylistList } from '@/components/playlist/playlist-list'
 import { SonglistList } from '@/components/songlist/songlist-list'
+
+import { useDiscoverPlaylist, useDiscoverNewSong } from '@/service/queries/discover'
+import { ROUTES } from '@/config'
 
 const Discover: React.FC = () => {
 	const { data: playlists, loading: playlistsLoading } = useDiscoverPlaylist()

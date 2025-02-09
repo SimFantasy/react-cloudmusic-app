@@ -1,16 +1,26 @@
-import { Artist } from '@/types/artist'
+import React from 'react'
+import { Play } from 'lucide-react'
+
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+
+import { Skeleton } from '@/components/ui/skeleton'
+
 import { thumbnail } from '@/lib/utils'
-import { Button } from '../ui/button'
-import { Play, Plus } from 'lucide-react'
-import { Skeleton } from '../ui/skeleton'
+import { Artist } from '@/types/artist'
+import { Song } from '@/types/playlist'
+import { PlaylistButton } from '../common/playlist-button'
 
 type ArtistDetailTopbarProps = {
 	artist?: Artist
 	loading: boolean
+	songs?: Song[]
 }
 
-export const ArtistDetailTopbar = ({ artist, loading }: ArtistDetailTopbarProps) => {
+export const ArtistDetailTopbar: React.FC<ArtistDetailTopbarProps> = ({
+	artist,
+	loading,
+	songs
+}) => {
 	return (
 		<>
 			{loading ? (
@@ -47,15 +57,10 @@ export const ArtistDetailTopbar = ({ artist, loading }: ArtistDetailTopbarProps)
 						</div>
 
 						<div className='flex-x-4'>
-							<Button className='play-all-button'>
+							<PlaylistButton className='play-all-button' type='set' tracks={songs}>
 								<Play className='size-5 fill-white stroke-white' />
 								<span>播放全部</span>
-							</Button>
-
-							<Button variant='outline' className='button-free px-4 py-2 text-primary/50'>
-								<Plus className='size-5' />
-								<span>关注</span>
-							</Button>
+							</PlaylistButton>
 						</div>
 					</div>
 				</div>

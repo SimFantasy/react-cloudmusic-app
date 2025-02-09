@@ -5,18 +5,20 @@ import {
 	SearchParams,
 	SearchTypeEnums
 } from '@/service/api/search'
-import { NewSong } from '@/types/discover'
+
 import { Album, Artist } from '@/types/artist'
-import { Playlist } from '@/types/playlist'
+
 import type {
 	SearchSongResult,
 	SearchAlbumResult,
 	SearchArtistResult,
 	SearchPlaylistResult,
 	SearchMvResult,
-	SearchMv
+	SearchMv,
+	SearchPlaylist
 } from '@/types/search'
 import { SITE } from '@/config'
+import { Song } from '@/types/playlist'
 
 /**
  * 综合搜索
@@ -27,7 +29,7 @@ export const useSearchComplex = (keywords: string) => useRequest(() => fetchSear
  * 搜索：歌曲 无限加载
  */
 interface SongResult {
-	list: NewSong[]
+	list: Song[]
 	hasMore: boolean
 }
 
@@ -36,7 +38,8 @@ const getSearchSong = async ({ keywords, limit, offset }: SearchParams): Promise
 		keywords,
 		limit,
 		offset,
-		type: SearchTypeEnums.SONG
+		type: SearchTypeEnums.SONG,
+		isSimple: false
 	})) as SearchSongResult
 	return {
 		list: response.songs,
@@ -141,7 +144,7 @@ export const useSearchArtistInfinite = ({ keywords, page }: { keywords: string; 
  * 搜索：歌单 无限加载
  */
 interface PlaylistResult {
-	list: Playlist[]
+	list: SearchPlaylist[]
 	hasMore: boolean
 }
 

@@ -1,5 +1,8 @@
+import React from 'react'
 import { VolumeX, Volume2 } from 'lucide-react'
+
 import { Slider } from '@/components/ui/slider'
+
 import { useAudioPlayer } from '@/store/audio-player'
 
 export const VolumeButton: React.FC = () => {

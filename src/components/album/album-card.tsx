@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Link } from 'react-router'
 import { Play } from 'lucide-react'
 
@@ -5,9 +7,10 @@ import { AspectRatio } from '@/components/ui/aspect-ratio'
 
 import { formatDate, thumbnail } from '@/lib/utils'
 import { Album } from '@/types/album'
+import { Album as AlbumType } from '@/types/playlist'
 
 type AlbumCardProps = {
-	album: Album
+	album: Album | AlbumType
 }
 
 export const AlbumCard: React.FC<AlbumCardProps> = ({ album }) => {
@@ -36,7 +39,9 @@ export const AlbumCard: React.FC<AlbumCardProps> = ({ album }) => {
 				</h1>
 				<div className='flex-x-4 text-xs text-primary/50 group-hover:text-blue-400'>
 					{(album as Album).size && <span>{(album as Album).size}首</span>}
-					<span>{formatDate(album.publishTime, 'YYYY-MM-DD')}</span>
+					{(album as Album).publishTime && (
+						<span>{formatDate((album as Album).publishTime, 'YYYY-MM-DD')}</span>
+					)}
 				</div>
 			</div>
 		</Link>

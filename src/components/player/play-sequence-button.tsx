@@ -1,7 +1,8 @@
+import React from 'react'
 import { Repeat, Repeat1, Shuffle } from 'lucide-react'
-import { PlaySequence } from '@/types/audio-player'
 
 import { useAudioPlayer } from '@/store/audio-player'
+import { PlaySequence } from '@/types/audio-player'
 
 export const PlaySequenceButton: React.FC = () => {
 	const playSequence = useAudioPlayer(state => state.playSequence)

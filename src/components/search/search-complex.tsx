@@ -1,6 +1,6 @@
-import { useSearchComplex } from '@/service/queries/search'
-import { SearchCard } from '@/components/search/search-card'
+import React from 'react'
 
+import { SearchCard } from '@/components/search/search-card'
 import { Titlebar } from '@/components/common/titlebar'
 import { SonglistList } from '@/components/songlist/songlist-list'
 import { PlaylistList } from '@/components/playlist/playlist-list'
@@ -8,9 +8,9 @@ import { AlbumList } from '@/components/album/album-list'
 import { MvList } from '@/components/mv/mv-list'
 import { ArtistList } from '@/components/artist/artist-list'
 
-import { SearchType } from '@/types/search'
-
+import { useSearchComplex } from '@/service/queries/search'
 import { thumbnail } from '@/lib/utils'
+import { SearchType } from '@/types/search'
 
 type SearchComplexProps = {
 	query: string
@@ -21,6 +21,7 @@ export const SearchComplex: React.FC<SearchComplexProps> = ({ query, setCurrentT
 	const { data, loading } = useSearchComplex(query)
 	const artist = data?.complex.artist.artists[0]
 	const mv = data?.mvs[0]
+
 	return (
 		<div className='flex-y-4'>
 			{/* Searc card */}

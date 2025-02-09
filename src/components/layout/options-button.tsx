@@ -1,6 +1,8 @@
-import { Bolt, Shirt } from 'lucide-react'
+import React from 'react'
+import { Shirt } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+
 import { useTheme } from '@/hooks/use-theme'
 import { cn } from '@/lib/utils'
 
@@ -11,10 +13,6 @@ export const OptionsButton: React.FC = () => {
 	}
 	return (
 		<div className='flex-x-2'>
-			<Button variant='ghost' className='button-free button-primary !w-9'>
-				<Bolt className='size-5' />
-			</Button>
-
 			<Button
 				variant='ghost'
 				className='button-free button-primary !w-9'

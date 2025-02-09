@@ -1,15 +1,29 @@
-import { CirclePlay, ListPlus, Play } from 'lucide-react'
+import React from 'react'
+import { Play } from 'lucide-react'
+
+import { TrackPlayButton } from '@/components/common/track-play-button'
+import { TrackAddButton } from '@/components/common/track-add-button'
 
 import { thumbnail } from '@/lib/utils'
-import { NewSongResult } from '@/types/discover'
+import { formatNewSongToTrack } from '@/lib/format-data'
+import { NewSong } from '@/types/discover'
 import { Song } from '@/types/playlist'
 
 type SonglistCardProps = {
-	song: NewSongResult | Song
+	song: NewSong | Song
 }
 
 export const SonglistCard: React.FC<SonglistCardProps> = ({ song }) => {
 	if (!song) return null
+	const newsong = formatNewSongToTrack(song as NewSong)
+
+	let track
+	if ('album' in song) {
+		track = newsong
+	} else {
+		track = song as Song
+	}
+
 	return (
 		<section className='group grid grid-cols-[auto,1fr,auto] gap-2 items-center p-2 h-16 bg-transparent rounded-lg trans-colors hover:bg-blue-500/10'>
 			<div className='relative size-12 rounded-lg overflow-hidden cursor-pointer'>
@@ -23,7 +37,7 @@ export const SonglistCard: React.FC<SonglistCardProps> = ({ song }) => {
 
 				{/* Image */}
 				<img
-					src={thumbnail((song as NewSongResult).picUrl || (song as Song).al.picUrl || '', 120)}
+					src={thumbnail(track.al.picUrl || '', 120)}
 					alt={song.name}
 					className='size-full object-cover'
 				/>
@@ -34,25 +48,13 @@ export const SonglistCard: React.FC<SonglistCardProps> = ({ song }) => {
 					{song.name}
 				</h3>
 				<span className='text-xs text-primary/40 trans-colors group-hover:text-blue-500/60'>
-					{(song as NewSongResult)?.song?.artists.map(artist => artist.name).join(' / ') ||
-						(song as Song).ar.map(artist => artist.name).join(' / ')}
+					{track.ar?.map(artist => artist.name).join(' / ')}
 				</span>
 			</div>
 
 			<div className='flex-end gap-x-2'>
-				<button
-					className='p-2 bg-transparent border-none outline-none trans-all opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0'
-					title='添加到播放列表'
-				>
-					<ListPlus className='size-5 text-primary/50 hover:text-blue-500' />
-				</button>
-
-				<button
-					className='p-2 bg-transparent border-none outline-none trans-all opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0'
-					title='播放歌曲'
-				>
-					<CirclePlay className='size-5 text-primary/50 hover:text-blue-500' />
-				</button>
+				<TrackAddButton track={track} />
+				<TrackPlayButton track={track} />
 			</div>
 		</section>
 	)

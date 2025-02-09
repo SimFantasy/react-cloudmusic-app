@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { TextContent } from '@/components/common/text-content'
 
 type AlbumDetailDescriptionProps = {
